@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/editItemSpec_designActivity" android:title="@string/edit_item_specs"/>
+    <item android:id="@+id/deleteItem_designActivity" android:title="@string/delete_item"/>
+    <item android:id="@+id/resetItem_designActivity" android:title="@string/reset_item"/>
+    <item android:id="@+id/copyItem_designActivity" android:title= "@string/copy_item"/>
+    <item android:id="@+id/itemDetails_designActivity" android:title="@string/item_detail"/>
+</menu>

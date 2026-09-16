@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <external-path
+        name="external_files"
+        path="." />
+    <files-path
+        name="file_path_n"
+        path="." />
+    <external-path
+        name="external_path_n"
+        path="." />
+    <external-files-path
+        name="external_file_path_n"
+        path="." />
+    <external-media-path
+        name="external_media_n"
+        path="." />
+</paths>

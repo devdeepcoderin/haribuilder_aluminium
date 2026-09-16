@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/inheader"
+        layout="@layout/layout_toolbar_other"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.deepcoder.hbalum.utils.view.CustomRecyclerView
+            android:id="@+id/rvItem"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/miniPadding"
+            app:gird_span="2"
+            app:list_orientation="vertical"
+            app:list_type="grid" />
+
+        <include android:id="@+id/inEmpty"
+            layout="@layout/layout_recycler_emptyview" />
+
+
+        <RelativeLayout
+            android:id="@+id/rlFab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom|end"
+            android:layout_marginStart="@dimen/fab_margin"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:layout_marginEnd="@dimen/fab_margin"
+            android:layout_marginBottom="@dimen/fab_margin">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabAddItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/tvNewProject"
+                android:contentDescription="@string/add_item"
+                app:elevation="0dp"
+                app:srcCompat="@drawable/icn_add" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvNewProject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/medium"
+                android:gravity="center"
+                android:padding="@dimen/microPadding"
+                android:text="@string/add_item"
+                android:textColor="#000000"
+                android:textSize="@dimen/extraMediumSize" />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+</LinearLayout>

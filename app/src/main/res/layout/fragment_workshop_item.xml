@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llDataRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/scrollViewWorkshop"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/clUserDetails"
+                layout="@layout/user_detail_view"
+                android:visibility="gone" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivProjectItemThumb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ic_launcher_splash" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/normalPadding"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/tvQuotationHeader"
+                    android:text="@string/project_name" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvItemName"
+                    style="@style/tvQuotationHeader"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:textColor="@color/colorPrimary" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/tvQuotationHeader"
+                    android:text="@string/item_number" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvItemNumber"
+                    style="@style/tvQuotationHeader"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:textColor="@color/colorPrimary" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/normalPadding"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/tvQuotationHeader"
+                    android:text="@string/txt_item_quantity" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvItemQty"
+                    style="@style/tvQuotationHeader"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:textColor="@color/colorPrimary" />
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:layout_marginTop="@dimen/smallestPadding"
+                android:layout_marginBottom="@dimen/smallestPadding"
+                android:background="@drawable/line_divider" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/semibold"
+                        android:gravity="start"
+                        android:paddingStart="@dimen/smallPadding"
+                        android:paddingTop="@dimen/miniPadding"
+                        android:paddingEnd="@dimen/smallPadding"
+                        android:paddingBottom="@dimen/miniPadding"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/extraMediumSize" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:background="@null"
+                        android:ellipsize="end"
+                        android:ems="4"
+                        android:enabled="false"
+                        android:fontFamily="@font/medium"
+                        android:gravity="center"
+                        android:inputType="none"
+                        android:paddingStart="@dimen/smallPadding"
+                        android:paddingTop="@dimen/miniPadding"
+                        android:paddingEnd="@dimen/smallPadding"
+                        android:paddingBottom="@dimen/miniPadding"
+                        android:text="@string/qty"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/mediumSize" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:background="@null"
+                        android:ellipsize="end"
+                        android:ems="5"
+                        android:enabled="false"
+                        android:fontFamily="@font/medium"
+                        android:gravity="center"
+                        android:inputType="none"
+                        android:paddingStart="@dimen/smallPadding"
+                        android:paddingTop="@dimen/miniPadding"
+                        android:paddingEnd="@dimen/smallPadding"
+                        android:paddingBottom="@dimen/miniPadding"
+                        android:text="@string/size"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/mediumSize" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llAluminiumContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.8dp"
+                    android:layout_marginTop="@dimen/smallestPadding"
+                    android:layout_marginBottom="@dimen/smallestPadding"
+                    android:background="@drawable/line_divider" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true">
+
+    <ScrollView
+        android:id="@+id/scrollViewStore"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/clUserDetails"
+                layout="@layout/user_detail_view"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/normalPadding"
+                android:orientation="horizontal">
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/tvQuotationHeader"
+                    android:text="@string/project_name" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvProjectName"
+                    style="@style/tvQuotationHeader"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:textColor="@color/colorPrimary" />
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:layout_marginTop="@dimen/smallestPadding"
+                android:layout_marginBottom="@dimen/smallestPadding"
+                android:background="@drawable/line_divider" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/semibold"
+                    android:gravity="start"
+                    android:paddingStart="@dimen/smallPadding"
+                    android:paddingTop="@dimen/miniPadding"
+                    android:paddingEnd="@dimen/smallPadding"
+                    android:paddingBottom="@dimen/miniPadding"
+                    android:text="@string/fittings_and_others"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/extraMediumSize" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@null"
+                    android:ellipsize="end"
+                    android:enabled="false"
+                    android:fontFamily="@font/medium"
+                    android:gravity="center"
+                    android:inputType="none"
+                    android:paddingStart="@dimen/smallPadding"
+                    android:paddingTop="@dimen/miniPadding"
+                    android:paddingEnd="@dimen/smallPadding"
+                    android:paddingBottom="@dimen/miniPadding"
+                    android:text="@string/hint_qty"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/mediumSize" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llFittingsAndOthersContainerLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:layout_marginTop="@dimen/smallestPadding"
+                android:layout_marginBottom="@dimen/smallestPadding"
+                android:background="@drawable/line_divider" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnCreatePdf"
+        style="@style/ButtonStyle"
+        android:text="@string/create_pdf" />
+</LinearLayout>

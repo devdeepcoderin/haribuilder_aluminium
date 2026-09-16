@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llBottomMain"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="end"
+    android:layout_marginEnd="@dimen/normalPadding"
+    android:gravity="end"
+    android:orientation="horizontal">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnNegative"
+        style="@style/btnDialogStyle"
+        android:text="@string/no"
+        android:textColor="@color/red" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnPositive"
+        style="@style/btnDialogStyle"
+        android:text="@string/yes"
+        android:textColor="@color/colorPrimary" />
+
+</LinearLayout>
+

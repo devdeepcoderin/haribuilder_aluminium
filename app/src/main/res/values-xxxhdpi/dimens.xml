@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- padding /margins-->
+    <dimen name="view">1dp</dimen>
+    <dimen name="stroke">1dp</dimen>
+    <dimen name="microPadding">5dp</dimen>
+    <dimen name="miniPadding">7dp</dimen>
+    <dimen name="tinyPadding">8dp</dimen>
+    <dimen name="smallestPadding">10dp</dimen>
+    <dimen name="smallPadding">11dp</dimen>
+    <dimen name="mediumPadding">13dp</dimen>
+    <dimen name="extraMediumPadding">15dp</dimen>
+    <dimen name="normalPadding">18dp</dimen>
+    <dimen name="extraNormalPadding">21dp</dimen>
+    <dimen name="largePadding">23dp</dimen>
+    <dimen name="xlargePadding">26dp</dimen>
+    <dimen name="xxlargePadding">28dp</dimen>
+    <dimen name="xxxlargePadding">34dp</dimen>
+    <dimen name="largerPadding">37dp</dimen>
+    <dimen name="xlargerPadding">39dp</dimen>
+    <dimen name="xxlargerPadding">43dp</dimen>
+    <dimen name="largestPadding">46dp</dimen>
+    <dimen name="marging_xxxlargest">110dp</dimen>
+    <dimen name="marging_xxxxlargest">150dp</dimen>
+    <dimen name="card_size">60dp</dimen>
+    <dimen name="pattern_spacing">92dp</dimen>
+    <!--Text Sizes-->
+
+
+</resources>

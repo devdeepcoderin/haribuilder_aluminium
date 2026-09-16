@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/inheader"
+        layout="@layout/layout_dialog_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/textLayoutStyle"
+            android:hint="@string/hint_enter_size">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtSize"
+                style="@style/inputEditTextStyle"
+                android:inputType="number" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <include android:id="@+id/inBottomButtons"
+            layout="@layout/layout_bottom_buttons" />
+    </LinearLayout>
+</LinearLayout>

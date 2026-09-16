@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_splash"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivSplash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/ic_launcher_splash" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvSplashName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivSplash"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+        android:layout_marginTop="@dimen/largePadding"
+        android:fontFamily="@font/medium"
+        android:text="@string/app_name"
+        android:textSize="@dimen/xLargeSize" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvAppVersion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+        android:layout_margin="@dimen/smallPadding"
+        android:layout_marginTop="@dimen/largePadding"
+        android:fontFamily="@font/light"
+        android:text="@string/version_colon"
+        android:textSize="@dimen/xLargeSize" />
+
+</RelativeLayout>

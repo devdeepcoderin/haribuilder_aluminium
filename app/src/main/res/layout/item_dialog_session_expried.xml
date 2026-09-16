@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/regular"
+        android:gravity="center"
+        android:lineSpacingExtra="3dp"
+        android:textColor="@color/black"
+        android:singleLine="false"
+        android:text="@string/session_expired_message" />
+
+    <Button
+        android:id="@+id/button_confirm"
+        style="@style/ButtonStyle"
+        android:background="@color/colorAccent"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/medium"
+        android:padding="10dp"
+        android:text="@string/ok"
+        android:textAllCaps="false"
+        android:textColor="@color/white" />
+
+</LinearLayout>

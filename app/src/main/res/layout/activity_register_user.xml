@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/inheader"
+        layout="@layout/layout_toolbar_other" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivForgotten"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="20dp"
+                android:contentDescription="@null"
+                app:srcCompat="@drawable/img_register" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvRegisterTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/mediumPadding"
+                android:fontFamily="@font/semibold"
+                android:gravity="center"
+                android:text="@string/register_title"
+                android:textColor="@color/black"
+                android:textSize="@dimen/largeSize" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvRegisterDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/mediumPadding"
+                android:fontFamily="@font/medium"
+                android:gravity="center"
+                android:lineSpacingExtra="8dp"
+                android:text="@string/register_details"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/extraMediumSize" />
+
+            <Button
+                android:id="@+id/btnRegisterNow"
+                style="@style/ButtonStyle"
+                android:text="@string/register_now" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

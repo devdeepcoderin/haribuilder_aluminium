@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorAccent"
+    android:padding="@dimen/tinyPadding">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivAppLogo"
+        android:layout_width="@dimen/card_size"
+        android:layout_height="@dimen/card_size"
+        android:padding="@dimen/microPadding"
+        android:src="@drawable/ic_launcher_splash"
+        app:layout_constraintEnd_toStartOf="@+id/tvAlumFrameTitle"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvAlumFrameTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/microPadding"
+        android:text="@string/alumframe"
+        android:textColor="@color/white"
+        android:textSize="@dimen/xLargeSize"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tvEmailValue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ivAppLogo"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvEmailValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/microPadding"
+        android:text="@string/email_value"
+        android:textColor="@color/white"
+        android:textSize="@dimen/extraMediumSize"
+        app:layout_constraintEnd_toEndOf="@+id/tvAlumFrameTitle"
+        app:layout_constraintStart_toStartOf="@+id/ivAppLogo"
+        app:layout_constraintTop_toBottomOf="@+id/ivAppLogo" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvContactValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/microPadding"
+        android:text="@string/contact_value"
+        android:textColor="@color/white"
+        android:textSize="@dimen/extraMediumSize"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tvEmailValue"
+        app:layout_constraintStart_toStartOf="@+id/tvEmailValue"
+        app:layout_constraintTop_toBottomOf="@id/tvEmailValue" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

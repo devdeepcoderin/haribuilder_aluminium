@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true">
+
+    <ProgressBar
+        android:id="@+id/pbLoader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
+    <LinearLayout
+        android:id="@+id/llDataRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsvQuotation"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/clUserDetails"
+                    layout="@layout/user_detail_view"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/normalPadding"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/tvQuotationHeader"
+                        android:text="@string/project_name" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvProjectName"
+                        style="@style/tvQuotationHeader"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:textColor="@color/colorPrimary" />
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.8dp"
+                    android:layout_marginTop="@dimen/smallestPadding"
+                    android:layout_marginBottom="@dimen/smallestPadding"
+                    android:background="@drawable/line_divider" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatTextView style="@style/tvQuotationTitle" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        style="@style/edtQuotationItem"
+                        android:layout_margin="0dp"
+                        android:background="@null"
+                        android:enabled="false"
+                        android:fontFamily="@font/medium"
+                        android:hint="@string/qty"
+                        android:inputType="none"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/extraMediumSize" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        style="@style/edtQuotationItem"
+                        android:layout_margin="0dp"
+                        android:background="@null"
+                        android:enabled="false"
+                        android:fontFamily="@font/medium"
+                        android:hint="@string/rate"
+                        android:inputType="none"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/extraMediumSize" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        style="@style/edtQuotationItem"
+                        android:layout_margin="0dp"
+                        android:background="@null"
+                        android:enabled="false"
+                        android:fontFamily="@font/medium"
+                        android:hint="@string/amount"
+                        android:inputType="none"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/extraMediumSize" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llMetalContainerLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.8dp"
+                    android:layout_marginTop="@dimen/smallestPadding"
+                    android:layout_marginBottom="@dimen/smallestPadding"
+                    android:background="@drawable/line_divider" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/tvQuotationHeader"
+                    android:text="@string/fittings" />
+
+                <LinearLayout
+                    android:id="@+id/llFittingsContainerLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.8dp"
+                    android:layout_marginTop="@dimen/smallestPadding"
+                    android:layout_marginBottom="@dimen/smallestPadding"
+                    android:background="@drawable/line_divider" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/tvQuotationHeader"
+                    android:text="@string/other" />
+
+                <LinearLayout
+                    android:id="@+id/llOtherContainerLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.8dp"
+                    android:layout_marginTop="@dimen/smallestPadding"
+                    android:layout_marginBottom="@dimen/smallestPadding"
+                    android:background="@drawable/line_divider" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/tvQuotationHeader"
+                    android:text="@string/cost_of_material" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/tvQuotationTitle"
+                        android:text="@string/other_material_expenses" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edtOtherMaterialAmount"
+                        style="@style/edtQuotationItem"
+                        android:hint="@string/amount" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/tvQuotationTitle"
+                        android:text="@string/labour" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edtLabourQty"
+                        style="@style/edtQuotationItem"
+                        android:hint="@string/qty" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edtLabourRate"
+                        style="@style/edtQuotationItem"
+                        android:hint="@string/rate" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edtLabourAmount"
+                        style="@style/edtQuotationItem"
+                        android:hint="@string/amount" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.8dp"
+                    android:layout_marginTop="@dimen/smallestPadding"
+                    android:layout_marginBottom="@dimen/smallestPadding"
+                    android:background="@drawable/line_divider" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/tvQuotationHeader"
+                    android:text="@string/total_cost" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/tvQuotationTitle"
+                        android:text="@string/transport" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edtTransportAmount"
+                        style="@style/edtQuotationItem"
+                        android:hint="@string/amount" />
+
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.8dp"
+                    android:layout_marginTop="@dimen/smallestPadding"
+                    android:layout_marginBottom="@dimen/smallestPadding"
+                    android:background="@drawable/line_divider" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/tvQuotationHeader"
+                    android:text="@string/cost_of_work" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/tvQuotationTitle"
+                        android:text="@string/profit" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edtProfitPercentage"
+                        style="@style/edtQuotationItem"
+                        android:hint="@string/percentage" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edtProfitAmount"
+                        style="@style/edtQuotationItem"
+                        android:hint="@string/amount" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/tvQuotationTitle"
+                        android:text="@string/vat" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edtVatPercentage"
+                        style="@style/edtQuotationItem"
+                        android:ems="4"
+                        android:hint="@string/percentage" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.8dp"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="@dimen/smallestPadding"
+                    android:layout_marginBottom="@dimen/smallestPadding"
+                    android:background="@drawable/line_divider" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/tvQuotationTitle"
+                        android:fontFamily="@font/semibold"
+                        android:text="@string/total_amount"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/tvTotalAmount"
+                        style="@style/edtQuotationItem"
+                        android:background="@null"
+                        android:enabled="false"
+                        android:fontFamily="@font/semibold"
+                        android:hint="@string/amount"
+                        android:inputType="none"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnCreatePdf"
+            style="@style/ButtonStyle"
+            android:text="@string/create_pdf" />
+
+    </LinearLayout>
+
+</FrameLayout>

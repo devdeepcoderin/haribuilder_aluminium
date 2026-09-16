@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "77745567163",
+    "project_id": "alumfram",
+    "storage_bucket": "alumfram.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:77745567163:android:50666ebe215cf2264f009e",
+        "android_client_info": {
+          "package_name": "com.deepcoder.hbalum"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "77745567163-1ru8udjb8slpdhit57n1to5078kajei1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD89TOYTEd9cEEhrvHO7Pe9psMOBO4m3qw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "77745567163-1ru8udjb8slpdhit57n1to5078kajei1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

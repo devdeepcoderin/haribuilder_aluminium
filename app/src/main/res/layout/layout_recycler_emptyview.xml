@@ -1,0 +1,46 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/llEmptyViewMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivEmptyImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerInside"
+        android:src="@drawable/icn_no_connection"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/pbLoader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvEmptyTitle"
+        style="@style/recyclerview_empty_text"
+        android:padding="@dimen/smallPadding"
+        android:textSize="@dimen/normalSize"
+        android:visibility="gone" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvEmptyDescription"
+        style="@style/recyclerview_empty_text"
+        android:textSize="@dimen/mediumSize"
+        android:visibility="gone" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btnEmpty"
+        style="@style/recyclerview_empty_button"
+        android:layout_margin="@dimen/smallPadding"
+        android:textSize="@dimen/mediumSize"
+        app:srcCompat="@drawable/icn_round_add_button"
+        android:visibility="gone" />
+
+
+</LinearLayout>

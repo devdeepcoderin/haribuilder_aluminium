@@ -1,0 +1,430 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
+    </style>
+
+    <style name="Theme.Transparent" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="DialogTheme" parent="android:Theme.DeviceDefault.Light.Dialog">
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColorSecondary">@android:color/black</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textColorPrimary">@android:color/black</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="TransparentBackground" parent="@android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="AlertDialogCustom" parent="Animation.AppCompat.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+
+    <style name="DialogTitleText">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginBottom">@dimen/smallestPadding</item>
+        <item name="android:textSize">@dimen/normalSize</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:fontFamily">@font/medium</item>
+    </style>
+
+    <style name="DialogMessageStyle">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginBottom">@dimen/smallPadding</item>
+        <item name="android:textSize">@dimen/mediumSize</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+
+    <!--  Style for  permission title and purpose of permission message-->
+    <style name="permission_dialog_ButtonStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">@dimen/largePadding</item>
+        <item name="android:layout_marginEnd">@dimen/largePadding</item>
+        <item name="android:padding">@dimen/smallPadding</item>
+        <item name="android:textSize">@dimen/mediumSize</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:fontFamily">@font/medium</item>
+
+    </style>
+
+    <style name="recyclerview_empty_button" parent="@style/Base.Widget.AppCompat.Button.Borderless">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:fontFamily">@font/medium</item>
+        <item name="android:layout_margin">@dimen/smallPadding</item>
+    </style>
+
+    <style name="recyclerview_empty_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:fontFamily">@font/light</item>
+        <item name="android:layout_margin">@dimen/smallPadding</item>
+    </style>
+
+
+    <style name="dialogTitleView">
+        <item name="android:fontFamily">@font/regular</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/normalSize</item>
+    </style>
+
+
+    <style name="tvTitleStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/regular</item>
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:paddingTop">@dimen/microPadding</item>
+        <item name="android:paddingBottom">@dimen/microPadding</item>
+        <item name="android:textSize">@dimen/mediumSize</item>
+    </style>
+
+
+    <style name="tvSettingTitleStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/semibold</item>
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:paddingTop">@dimen/largePadding</item>
+        <item name="android:paddingBottom">@dimen/microPadding</item>
+        <item name="android:layout_marginStart">@dimen/mediumPadding</item>
+        <item name="android:layout_marginEnd">@dimen/mediumPadding</item>
+        <item name="android:textSize">@dimen/extraMediumSize</item>
+
+    </style>
+
+    <style name="tvSubTitleStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/regular</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/extraMediumSize</item>
+    </style>
+
+    <style name="btnDialogBtnStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:fontFamily">@font/medium</item>
+        <item name="android:padding">@dimen/tinyPadding</item>
+        <item name="android:textSize">@dimen/extraMediumSize</item>
+
+    </style>
+
+    <style name="btnDialogStyle" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:fontFamily">@font/medium</item>
+        <item name="android:padding">@dimen/tinyPadding</item>
+        <item name="android:textSize">@dimen/normalSize</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+
+    <style name="tvProjectTitleStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/medium</item>
+        <item name="android:textSize">@dimen/largeSize</item>
+        <item name="android:paddingTop">@dimen/extraMediumPadding</item>
+        <item name="android:paddingBottom">@dimen/extraMediumPadding</item>
+        <item name="android:paddingStart">@dimen/smallPadding</item>
+        <item name="android:paddingEnd">@dimen/smallPadding</item>
+    </style>
+
+
+    <style name="tvSettingsScreenStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/medium</item>
+        <item name="android:textSize">@dimen/extraMediumSize</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:drawablePadding">@dimen/smallPadding</item>
+        <item name="android:padding">@dimen/smallPadding</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_margin">@dimen/smallPadding</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+
+    <style name="tvToolbarTitle">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:focusable">false</item>
+        <item name="android:clickable">false</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/medium</item>
+        <item name="android:gravity">center</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textSize">@dimen/normalSize</item>
+    </style>
+
+
+    <style name="ivToolbarIcon">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:contentDescription">@string/app_name</item>
+        <item name="android:padding">@dimen/tinyPadding</item>
+        <item name="android:layout_marginStart">@dimen/miniPadding</item>
+        <item name="android:layout_marginEnd">@dimen/miniPadding</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
+    <style name="btnToolbarBack">
+
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_alignParentStart">false</item>
+        <item name="android:layout_centerVertical">false</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:contentDescription">@string/app_name</item>
+        <item name="android:gravity">center</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:padding">@dimen/normalPadding</item>
+        <item name="android:textSize">@dimen/normalSize</item>
+        <item name="android:src">?homeAsUpIndicator</item>
+        <item name="android:tint">@color/white</item>
+        <item name="android:visibility">visible</item>
+    </style>
+
+    <style name="textLayoutStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/mediumPadding</item>
+        <item name="android:layout_marginBottom">@dimen/mediumPadding</item>
+        <item name="android:layout_marginStart">@dimen/normalPadding</item>
+        <item name="android:layout_marginEnd">@dimen/normalPadding</item>
+        <item name="android:padding">@dimen/tinyPadding</item>
+        <item name="android:textSize">@dimen/mediumSize</item>
+        <item name="android:textColorHint">@color/black</item>
+        <item name="android:background">@drawable/button_bg_light_gray_cornerless_border</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="textLayoutDefaultSettingStyle" parent="textLayoutStyle">
+        <item name="android:background">@drawable/button_bg_light_gray_cornerless_border</item>
+        <item name="android:layout_margin">@dimen/tinyPadding</item>
+    </style>
+
+
+    <style name="inputEditTextStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/extraMediumSize</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:padding">@dimen/tinyPadding</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:background">@null</item>
+    </style>
+
+
+    <style name="inputEditTextDefaultSettingStyle" parent="inputEditTextStyle">
+        <item name="android:padding">@dimen/microPadding</item>
+        <item name="android:inputType">numberDecimal</item>
+    </style>
+
+    <style name="llProjectDetailStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingStart">@dimen/normalPadding</item>
+        <item name="android:paddingEnd">@dimen/normalPadding</item>
+        <item name="android:paddingTop">@dimen/tinyPadding</item>
+        <item name="android:paddingBottom">@dimen/tinyPadding</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="cardViewStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/mediumPadding</item>
+        <item name="android:layout_marginEnd">@dimen/mediumPadding</item>
+        <item name="android:layout_marginTop">@dimen/smallPadding</item>
+        <item name="android:layout_marginBottom">@dimen/smallPadding</item>
+        <item name="cardCornerRadius">@dimen/tinyPadding</item>
+        <item name="cardElevation">@dimen/stroke</item>
+        <item name="cardPreventCornerOverlap">true</item>
+    </style>
+
+    <style name="btnDesignBottomStyle">
+        <item name="android:background">@color/drawing_button_color</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="btnDesignBottomStyleSliding" parent="btnDesignBottomStyle">
+        <item name="android:layout_height">48dp</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:tint">#2F42B2</item>
+    </style>
+
+    <style name="action_bar_button_style">
+        <item name="android:background">@color/drawing_button_color</item>
+        <item name="android:layout_width">@dimen/iconsWidth</item>
+        <item name="android:layout_height">@dimen/iconsWidth</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+
+    <style name="CustomToolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?android:attr/actionBarSize</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:layout_alignParentTop">true</item>
+    </style>
+
+    <style name="VerifyOTPEditTextStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:inputType">number</item>
+        <item name="android:fontFamily">@font/semibold</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:maxLength">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:hint">@string/big_circle</item>
+        <item name="android:paddingBottom">16dp</item>
+    </style>
+
+    <style name="ButtonStyle" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_margin">@dimen/normalPadding</item>
+        <item name="android:background">@drawable/button_bg_filled_primary_corner</item>
+        <item name="android:fontFamily">@font/semibold</item>
+    </style>
+
+    <style name="EditTextStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:inputType">text</item>
+        <item name="android:fontFamily">@font/semibold</item>
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">@color/gray</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="AppTab.TextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:fontFamily">@font/medium</item>
+    </style>
+
+    <style name="tvQuotationHeader">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:fontFamily">@font/semibold</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">start</item>
+        <item name="android:textSize">@dimen/extraMediumSize</item>
+        <item name="android:paddingTop">@dimen/miniPadding</item>
+        <item name="android:paddingBottom">@dimen/miniPadding</item>
+        <item name="android:paddingStart">@dimen/smallPadding</item>
+        <item name="android:paddingEnd">@dimen/smallPadding</item>
+    </style>
+
+    <style name="tvQuotationTitle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/grey_800</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:fontFamily">@font/regular</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">start</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:paddingTop">@dimen/miniPadding</item>
+        <item name="android:paddingBottom">@dimen/miniPadding</item>
+        <item name="android:paddingStart">@dimen/smallPadding</item>
+        <item name="android:paddingEnd">@dimen/smallPadding</item>
+    </style>
+
+    <style name="edtQuotationItem">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/regular</item>
+        <item name="android:textSize">@dimen/mediumSize</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:background">@drawable/button_bg_light_gray_cornerless_border</item>
+        <item name="android:paddingTop">@dimen/miniPadding</item>
+        <item name="android:paddingBottom">@dimen/miniPadding</item>
+        <item name="android:paddingStart">@dimen/smallPadding</item>
+        <item name="android:paddingEnd">@dimen/smallPadding</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:inputType">numberDecimal</item>
+    </style>
+
+    <style name="hintcase_title">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textSize">@dimen/xLargeSize</item>
+        <item name="android:padding">@dimen/mediumPadding</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginLeft">@dimen/mediumPadding</item>
+        <item name="android:layout_marginRight">@dimen/mediumPadding</item>
+        <item name="android:fontFamily">@font/medium</item>
+
+    </style>
+
+    <style name="hintcase_content">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textSize">@dimen/normalSize</item>
+        <item name="android:padding">@dimen/mediumPadding</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginLeft">@dimen/mediumPadding</item>
+        <item name="android:layout_marginRight">@dimen/mediumPadding</item>
+        <item name="android:fontFamily">@font/medium</item>
+    </style>
+
+</resources>

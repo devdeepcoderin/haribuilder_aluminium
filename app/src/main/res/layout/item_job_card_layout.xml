@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llMetalRawItemLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvItemName"
+        style="@style/tvQuotationTitle"
+        tools:text="Metal name" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edtQty"
+        style="@style/edtQuotationItem"
+        android:ems="4"
+        android:hint="@string/qty" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edtSize"
+        style="@style/edtQuotationItem"
+        android:ems="5"
+        android:hint="@string/size" />
+
+</LinearLayout>

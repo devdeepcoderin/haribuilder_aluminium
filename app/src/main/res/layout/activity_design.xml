@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <include
+        android:id="@+id/inheader"
+        layout="@layout/layout_toolbar_design_screen" />
+
+    <LinearLayout
+        android:id="@+id/llMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/inheader"
+        android:orientation="vertical">
+
+        <com.deepcoder.hbalum.utils.view.DrawingView
+            android:id="@+id/drawing"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/smallPadding"
+            android:layout_weight="1"
+            android:background="@color/gray_light_new" />
+
+        <com.deepcoder.hbalum.utils.dots_indicator.DotsIndicator
+            android:id="@+id/dotsIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            app:dotsColor="@color/grey_300"
+            app:dotsCornerRadius="8dp"
+            app:dotsSize="12dp"
+            app:dotsSpacing="4dp"
+            app:dotsWidthFactor="2.5"
+            app:progressMode="true"
+            app:selectedDotColor="@color/colorPrimary" />
+
+        <RelativeLayout
+            android:id="@+id/llBottomMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/smallPadding"
+            android:background="@drawable/bg_filled_gray">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/smallPadding"
+                    android:paddingBottom="@dimen/smallPadding">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivVerticalMullion"
+                        style="@style/btnDesignBottomStyle"
+                        app:srcCompat="@drawable/icn_vertical_mullion" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivTilt"
+                        style="@style/btnDesignBottomStyle"
+                        app:srcCompat="@drawable/icn_tilt" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivTurnRight"
+                        style="@style/btnDesignBottomStyle"
+                        app:srcCompat="@drawable/icn_turn_right" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivSlidingRight"
+                        style="@style/btnDesignBottomStyle"
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/icn_right_arrow" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivDoorLeft"
+                        style="@style/btnDesignBottomStyle"
+                        app:srcCompat="@drawable/icn_door_left" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivHorizontalPanel"
+                        style="@style/btnDesignBottomStyle"
+                        app:srcCompat="@drawable/icn_horizontal_panel" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/smallPadding"
+                    android:paddingBottom="@dimen/smallPadding">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivHorizontalMullion"
+                        style="@style/btnDesignBottomStyle"
+                        app:srcCompat="@drawable/icn_horizontal_mullion" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivTurnLeft"
+                        style="@style/btnDesignBottomStyle"
+                        app:srcCompat="@drawable/icn_turn_left" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivDoorOpen"
+                        style="@style/btnDesignBottomStyle"
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/icn_door" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivSlidingLeft"
+                        style="@style/btnDesignBottomStyle"
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/icn_left_arrow" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivDoorRight"
+                        style="@style/btnDesignBottomStyle"
+                        app:srcCompat="@drawable/icn_door_right" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivVerticalPanel"
+                        style="@style/btnDesignBottomStyle"
+                        app:srcCompat="@drawable/icn_vertical_panel" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivSliding2A"
+                        style="@style/btnDesignBottomStyleSliding"
+                        android:src="@drawable/sliding_2_a"
+                        android:tag="sliding_2_a" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivSliding2C"
+                        style="@style/btnDesignBottomStyleSliding"
+                        android:src="@drawable/sliding_2_c"
+                        android:tag="sliding_2_c" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivSliding3F"
+                        style="@style/btnDesignBottomStyleSliding"
+                        android:src="@drawable/sliding_3_f"
+                        android:tag="sliding_3_f" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivSliding3H"
+                        style="@style/btnDesignBottomStyleSliding"
+                        android:src="@drawable/sliding_3_h"
+                        android:tag="sliding_3_h" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivSliding4A"
+                        style="@style/btnDesignBottomStyleSliding"
+                        android:src="@drawable/sliding_4_a"
+                        android:tag="sliding_4_a" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivSliding2B"
+                        style="@style/btnDesignBottomStyleSliding"
+                        android:src="@drawable/sliding_2_b"
+                        android:tag="sliding_2_b" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivSliding3A"
+                        style="@style/btnDesignBottomStyleSliding"
+                        android:src="@drawable/sliding_3_a"
+                        android:tag="sliding_3_a" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivSliding3G"
+                        style="@style/btnDesignBottomStyleSliding"
+                        android:src="@drawable/sliding_3_g"
+                        android:tag="sliding_3_g" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivSliding3I"
+                        style="@style/btnDesignBottomStyleSliding"
+                        android:src="@drawable/sliding_3_i"
+                        android:tag="sliding_3_i" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivSliding4B"
+                        style="@style/btnDesignBottomStyleSliding"
+                        android:src="@drawable/sliding_4_b"
+                        android:tag="sliding_4_b" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

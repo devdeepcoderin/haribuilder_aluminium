@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_light_new"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/inheader"
+        layout="@layout/layout_toolbar_other" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="@style/tvSettingTitleStyle"
+        android:text="@string/app_settings" />
+
+    <androidx.cardview.widget.CardView
+        style="@style/cardViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/largePadding"
+        android:paddingBottom="@dimen/largePadding">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvPriceSettings"
+                style="@style/tvSettingsScreenStyle"
+                android:drawableStart="@drawable/icn_default_setting"
+                android:text="@string/default_setting" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/llPlan"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/tvSettingTitleStyle"
+            android:text="@string/subscription_plan" />
+
+        <androidx.cardview.widget.CardView
+            style="@style/cardViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/largePadding"
+            android:paddingBottom="@dimen/largePadding">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvPlan"
+                    android:visibility="gone"
+                    style="@style/tvSettingsScreenStyle"
+                    android:drawableStart="@drawable/ic_subscription"
+                    android:text="@string/subscription_plan" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="@style/tvSettingTitleStyle"
+        android:text="@string/other" />
+
+
+    <androidx.cardview.widget.CardView
+        style="@style/cardViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/largePadding"
+        android:paddingBottom="@dimen/largePadding">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/smallPadding"
+            android:paddingBottom="@dimen/smallPadding">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvPP"
+                style="@style/tvSettingsScreenStyle"
+                android:drawableStart="@drawable/icn_pp"
+
+                android:text="@string/privacy_policy" />
+
+            <include
+                layout="@layout/layout_divider_horizontal" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvShareApp"
+                style="@style/tvSettingsScreenStyle"
+                android:drawableStart="@drawable/icn_share"
+                android:text="@string/share_app" />
+
+            <include
+
+                layout="@layout/layout_divider_horizontal" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvRateUs"
+                style="@style/tvSettingsScreenStyle"
+                android:drawableStart="@drawable/icn_rate"
+                android:text="@string/rate_us" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>

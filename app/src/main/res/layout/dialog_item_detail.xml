@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <include android:id="@+id/inheader"
+            layout="@layout/layout_dialog_title" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout style="@style/llProjectDetailStyle">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvItemNumberTitle"
+                    style="@style/tvTitleStyle"
+                    android:text="@string/item_number" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvItemNumber"
+                    style="@style/tvSubTitleStyle" />
+            </LinearLayout>
+
+            <include android:id="@+id/inHorizontal"
+                layout="@layout/layout_divider_horizontal" />
+
+            <LinearLayout style="@style/llProjectDetailStyle">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvQuantityTitle"
+                    style="@style/tvTitleStyle"
+                    android:text="@string/quantity" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvQuantity"
+                    style="@style/tvSubTitleStyle" />
+            </LinearLayout>
+
+            <include layout="@layout/layout_divider_horizontal" />
+
+            <LinearLayout style="@style/llProjectDetailStyle">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvItemNameTitle"
+                    style="@style/tvTitleStyle"
+                    android:text="@string/item_name" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvItemName"
+                    style="@style/tvSubTitleStyle" />
+            </LinearLayout>
+
+            <include layout="@layout/layout_divider_horizontal" />
+
+            <LinearLayout style="@style/llProjectDetailStyle">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvDimensionTitle"
+                    style="@style/tvTitleStyle"
+                    android:text="@string/dimension" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvDimension"
+                    style="@style/tvSubTitleStyle" />
+            </LinearLayout>
+
+            <include layout="@layout/layout_divider_horizontal" />
+
+            <LinearLayout style="@style/llProjectDetailStyle">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvProfileLengthTitle"
+                    style="@style/tvTitleStyle"
+                    android:text="@string/profiles_length" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvProfileLength"
+                    style="@style/tvSubTitleStyle" />
+            </LinearLayout>
+
+
+            <LinearLayout style="@style/llProjectDetailStyle">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvGlassAreaTitle"
+                    style="@style/tvTitleStyle"
+                    android:text="@string/glass_area" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvGlassArea"
+                    style="@style/tvSubTitleStyle" />
+            </LinearLayout>
+
+
+            <LinearLayout style="@style/llProjectDetailStyle">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvItemAreaTitle"
+                    style="@style/tvTitleStyle"
+                    android:text="@string/item_area" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvItemArea"
+                    style="@style/tvSubTitleStyle" />
+            </LinearLayout>
+
+            <include android:id="@+id/inButtonItemDetail"
+                layout="@layout/layout_bottom_buttons" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

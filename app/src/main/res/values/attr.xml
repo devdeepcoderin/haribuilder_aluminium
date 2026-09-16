@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <declare-styleable name="CircleImageView">
+        <attr name="civ_border_width" format="dimension" />
+        <attr name="civ_border_color" format="color" />
+        <attr name="civ_border_overlay" format="boolean" />
+        <attr name="civ_fill_color" format="color" />
+    </declare-styleable>
+
+    // RecyclerView resources
+    <declare-styleable name="CustomRecyclerView">
+        <attr name="gird_span" format="integer" />
+        <attr name="list_type" />
+        <attr name="list_orientation" />
+    </declare-styleable>
+
+    <attr name="list_type">
+        <enum name="list" value="0" />
+        <enum name="grid" value="1" />
+        <enum name="staggered" value="2" />
+    </attr>
+
+    <attr name="list_orientation">
+        <enum name="vertical" value="0" />
+        <enum name="horizontal" value="1" />
+    </attr>
+
+    <attr name="dotsColor" format="color" />
+    <attr name="selectedDotColor" format="color" />
+    <attr name="dotsStrokeColor" format="color" />
+    <attr name="dotsSize" format="dimension" />
+    <attr name="dotsWidthFactor" format="float" />
+    <attr name="dotsSpacing" format="dimension" />
+    <attr name="dotsCornerRadius" format="dimension" />
+    <attr name="dotsStrokeWidth" format="dimension" />
+    <attr name="stiffness" format="float" />
+    <attr name="dampingRatio" format="float" />
+    <attr name="progressMode" format="boolean" />
+
+    <declare-styleable name="DotsIndicator">
+        <attr name="dotsColor" />
+        <attr name="selectedDotColor" />
+        <attr name="dotsSize" />
+        <attr name="dotsWidthFactor" />
+        <attr name="dotsSpacing" />
+        <attr name="dotsCornerRadius" />
+        <attr name="progressMode" />
+    </declare-styleable>
+</resources>

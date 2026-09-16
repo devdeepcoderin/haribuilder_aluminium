@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include android:id="@+id/inheader"
+        layout="@layout/layout_dialog_title"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/textLayoutStyle"
+            android:hint="@string/hint_rename_item_number">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtItemNumber"
+                style="@style/inputEditTextStyle"
+                android:inputType="number" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/textLayoutStyle"
+            android:hint="@string/hint_add_qty">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtQty"
+                style="@style/inputEditTextStyle"
+                android:inputType="number" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/textLayoutStyle"
+            android:hint="@string/hint_rename_item_name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtItemName"
+                style="@style/inputEditTextStyle"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <include android:id="@+id/inBottomButtons"
+            layout="@layout/layout_bottom_buttons" />
+    </LinearLayout>
+</LinearLayout>

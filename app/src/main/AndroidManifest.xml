@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+
+    <application
+        android:name="com.deepcoder.hbalum.application.BaseApplication"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:preserveLegacyExternalStorage="true"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        android:allowBackup="false"
+        android:fullBackupContent="false"
+        tools:targetApi="r"
+        tools:replace="android:allowBackup">
+        <activity
+            android:name=".activities.SubscriptionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.WebViewActivity"
+            android:exported="false" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity
+            android:name="com.deepcoder.hbalum.activities.SplashActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:exported="true">
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!--
+               as we want to open main activity from our link so we are specifying
+               only in main activity or we can specify that in different activity as well
+            -->
+            <!-- on below line we are adding intent filter to our MainActivity -->
+            <intent-filter>
+
+                <!-- below line is to set the action to our intent to view -->
+                <action android:name="android.intent.action.VIEW" />
+
+                <!-- on below line we are adding a default category to our intent -->
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <!-- on below line we are adding a category to make our app browsable -->
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!--
+                     on below line we are specifying the host name and
+                    the scheme type from which we will be calling our app www.alumframe.woodennayls.com
+                -->
+                <data
+                    android:host="www.alumframe.co"
+                    android:scheme="https" />
+
+                <data
+                    android:host="alumframe.woodennayls.com"
+                    android:pathPrefix="/subscription"
+                    android:scheme="https"
+                    />
+            </intent-filter>
+
+            <!-- below is the same filter as above just the scheme is changed to http -->
+            <!-- so we can open our app with the url starting with https and http as well -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="www.alumframe.com"
+                    android:scheme="http" />
+                <data
+                    android:host="alumframe.woodennayls.com"
+                    android:pathPrefix="/subscription"
+                    android:scheme="http"
+                    />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.deepcoder.hbalum.activities.PrivacyPolicyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.deepcoder.hbalum.activities.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.deepcoder.hbalum.activities.SettingsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.deepcoder.hbalum.activities.ProjectItemActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.deepcoder.hbalum.activities.DesignActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.deepcoder.hbalum.activities.ForgotPasswordActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.deepcoder.hbalum.activities.VerifyOtpActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.deepcoder.hbalum.activities.SignUpActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.deepcoder.hbalum.activities.SignInActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.deepcoder.hbalum.activities.DefaultSettingsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.deepcoder.hbalum.activities.ExportPDFActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.deepcoder.hbalum.activities.PriceEstimationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.deepcoder.hbalum.activities.RegisterUserActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+
+    </application>
+
+</manifest>

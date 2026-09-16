@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tlMain"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@drawable/img_toolbar_bg"
+    app:contentInsetLeft="0dp"
+    app:contentInsetStart="0dp"
+    app:layout_collapseMode="pin">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/imgBtnBack"
+            style="@style/btnToolbarBack" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitle"
+            style="@style/tvToolbarTitle"
+            android:gravity="center"
+            tools:text="@string/app_name"
+            tools:visibility="visible"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivRight"
+            style="@style/ivToolbarIcon"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/mediumPadding"
+            android:visibility="gone"
+            tools:visibility="visible" />
+    </RelativeLayout>
+
+</androidx.appcompat.widget.Toolbar>
+
