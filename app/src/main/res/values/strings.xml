@@ -285,10 +285,9 @@
     <string name="other_wall_plug">Wall Plug</string>
     <string name="other_labour">Labour</string>
     <string name="other_vat">16%</string>
-    <string name="other_currency">Ksh</string>
+    <string name="other_currency">SCR</string>
     <string name="currency_vat"><![CDATA[Currency & vat]]></string>
     <string name="currency">Currency</string>
-    <string name="currency_ksh">ksh</string>
     <string name="please_wait">Please wait…</string>
     <string name="info_message_items_share">Please add one or more items to share!</string>
     <string name="size">Size</string>

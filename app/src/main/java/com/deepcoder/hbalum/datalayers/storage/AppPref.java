@@ -22,7 +22,7 @@ public final class AppPref {
     public static final float VALUE_VAT = 16;
 
     public static final String CURRENCY = "CURRENCY";
-    public static final String VALUE_CURRENCY = "ksh";
+    public static final String VALUE_CURRENCY = "SCR";
     public static final String VAT = "VAT";
 
     public static final String key_Al_open_wSash_price = "Al_open_wSash_price";
