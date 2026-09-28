@@ -4,18 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.annotation.NonNull;
-
 import com.deepcoder.hbalum.R;
 import com.deepcoder.hbalum.adapter.SubscriptionListAdapter;
 import com.deepcoder.hbalum.databinding.ActivitySubscriptionBinding;
-import com.deepcoder.hbalum.datalayers.model.*;
+import com.deepcoder.hbalum.datalayers.model.SubscriptionDataModel;
 import com.deepcoder.hbalum.utils.StaticData;
 import com.deepcoder.hbalum.utils.StaticUtils;
 
-import java.util.*;
-
-import retrofit2.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SubscriptionActivity extends BaseActivity {
     private ActivitySubscriptionBinding binding;
@@ -28,7 +25,7 @@ public class SubscriptionActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivitySubscriptionBinding.inflate(getLayoutInflater());
-        StaticUtils.fullScreenModeManage(getWindow(),binding.getRoot());
+        StaticUtils.fullScreenModeManage(getWindow(), binding.getRoot());
         setContentView(binding.getRoot());
         init();
     }
@@ -59,13 +56,11 @@ public class SubscriptionActivity extends BaseActivity {
                 } else {
                     purchaseMap.put("description", getProjectData.getDescription());
                 }
-                purchase(purchaseMap);
+                purchase();
             }
         });
 
-        binding.include.imgBtnBack.setOnClickListener(view -> {
-            finish();
-        });
+        binding.include.imgBtnBack.setOnClickListener(view -> finish());
     }
 
     private void setSubscriptionAdapter() {
@@ -78,9 +73,6 @@ public class SubscriptionActivity extends BaseActivity {
                 binding.btnSubscribe.setEnabled(true);
             }
 
-            @Override
-            public void onLongItemSelected(int position, SubscriptionDataModel projectData) {
-            }
         };
         binding.rvSubscribe.setAdapter(mSubscriptionListAdapter);
     }
@@ -103,7 +95,7 @@ public class SubscriptionActivity extends BaseActivity {
     }
 
 
-    private void purchase(HashMap<String, Object> purchaseMap) {
+    private void purchase() {
         showLoading();
         hideLoading();
         appPref.setValue(StaticData.PREF_PAYMENT_STATUS, true);

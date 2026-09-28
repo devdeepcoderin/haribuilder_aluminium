@@ -10,6 +10,11 @@
         <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
     </style>
 
+    <style name="ShapeAppearanceOverlayAppRoundedSquareFab">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/extraMediumPadding</item>
+    </style>
+
     <style name="Theme.Transparent" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>

@@ -2,15 +2,15 @@ package com.deepcoder.hbalum.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.EditText;
 
 import com.deepcoder.hbalum.R;
 import com.deepcoder.hbalum.databinding.ActivityVerifyOtpBinding;
 import com.deepcoder.hbalum.utils.StaticData;
 import com.deepcoder.hbalum.utils.StaticUtils;
-
-import java.util.HashMap;
 
 public class VerifyOtpActivity extends BaseActivity {
     private ActivityVerifyOtpBinding binding;
@@ -21,7 +21,7 @@ public class VerifyOtpActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityVerifyOtpBinding.inflate(getLayoutInflater());
-        StaticUtils.fullScreenModeManage(getWindow(),binding.getRoot());
+        StaticUtils.fullScreenModeManage(getWindow(), binding.getRoot());
         setContentView(binding.getRoot());
         setupClickListeners();
         init();
@@ -59,7 +59,7 @@ public class VerifyOtpActivity extends BaseActivity {
         int viewId = view.getId();
 
         if (viewId == R.id.imgBtnBack) {
-            super.onBackPressed();
+            getOnBackPressedDispatcher().onBackPressed();
         } else if (viewId == R.id.tvResend) {
             doResendOTP();
         } else if (viewId == R.id.btnVerify) {
@@ -74,10 +74,6 @@ public class VerifyOtpActivity extends BaseActivity {
             return;
         }
         showLoading();
-
-        HashMap<String, Object> requestParams = new HashMap<>();
-        requestParams.put("email", mEmailID);
-        requestParams.put("is_test", StaticData.EXTRA_OTP_TESTING_MODE);
         hideLoading();
         showSnackbar(getString(R.string.success));
 
@@ -85,7 +81,7 @@ public class VerifyOtpActivity extends BaseActivity {
 
     private void doVerifyOtp() {
 
-        String password = "", cnfPassword, mOTP = binding.edtOtp.getText().toString().trim();
+        String mOTP = getTrimmedText(binding.edtOtp);
 
         if (!StaticUtils.isValidEmail(mEmailID)) {
             showSnackbar(getString(R.string.error_info_email));
@@ -103,8 +99,8 @@ public class VerifyOtpActivity extends BaseActivity {
         }
 
         if (isSignup == StaticData.PASSWORD_VERIFICATION) {
-            password = binding.edtPassword.getText().toString().trim();
-            cnfPassword = binding.edtConfirmPassword.getText().toString().trim();
+            String password = getTrimmedText(binding.edtPassword);
+            String cnfPassword = getTrimmedText(binding.edtConfirmPassword);
 
             if (TextUtils.isEmpty(password)) {
                 showSnackbar(getString(R.string.error_info_password));
@@ -132,16 +128,15 @@ public class VerifyOtpActivity extends BaseActivity {
         }
 
         showLoading();
-
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("email", mEmailID);
-        map.put("otp", mOTP);
-        map.put("password", password);
-        map.put("is_signup", isSignup);
         hideLoading();
         appPref.setValue(StaticData.PREF_API_ACCESS_TOKEN, "offline-token");
         showSnackbar(getString(R.string.success));
         setResult(Activity.RESULT_OK);
         finish();
+    }
+
+    private String getTrimmedText(EditText editText) {
+        Editable text = editText.getText();
+        return text == null ? "" : text.toString().trim();
     }
 }

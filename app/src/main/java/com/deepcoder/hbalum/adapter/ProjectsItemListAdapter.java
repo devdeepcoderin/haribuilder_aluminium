@@ -71,8 +71,9 @@ public abstract class ProjectsItemListAdapter extends RecyclerView.Adapter<Proje
     }
 
 
-    static class MyViewHolder extends RecyclerView.ViewHolder {
+    public static final class MyViewHolder extends RecyclerView.ViewHolder {
         private final ItemProjectItemBinding binding;
+
         MyViewHolder(ItemProjectItemBinding binding) {
             super(binding.getRoot());
             this.binding = binding;

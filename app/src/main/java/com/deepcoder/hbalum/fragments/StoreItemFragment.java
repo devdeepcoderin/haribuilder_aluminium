@@ -2,10 +2,7 @@ package com.deepcoder.hbalum.fragments;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -17,8 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import com.deepcoder.hbalum.BuildConfig;
@@ -42,14 +37,11 @@ import com.deepcoder.hbalum.utils.PermissionUtils;
 import com.deepcoder.hbalum.utils.StaticData;
 import com.deepcoder.hbalum.utils.StaticUtils;
 import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
-import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.html.WebColors;
@@ -57,7 +49,6 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -116,7 +107,7 @@ public class StoreItemFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentStoreItemBinding.inflate(inflater, container, false);
-        StaticUtils.fullScreenModeManage(requireActivity().getWindow(),binding.getRoot());
+        StaticUtils.fullScreenModeManage(requireActivity().getWindow(), binding.getRoot());
         binding.btnCreatePdf.setOnClickListener(v -> onViewClicked());
         init();
         return binding.getRoot();
@@ -137,15 +128,14 @@ public class StoreItemFragment extends BaseFragment {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Handler mainHandler = new Handler(Looper.getMainLooper());
 
-        executor.execute(() ->{
+        executor.execute(() -> {
             fetchData();
 
-            mainHandler.post(() ->{
+            mainHandler.post(() -> {
                 initializeAluminiumLayout();
             });
         });
     }
-
 
 
     private void fetchData() {
@@ -262,7 +252,7 @@ public class StoreItemFragment extends BaseFragment {
 
             document.setPageSize(PageSize.A4);
             document.addCreationDate();
-            document.addAuthor("AlumFrame");
+            document.addAuthor("HaribuilderAluminium");
             // document.addCreator("http://chonchol.me");
 
             try {
@@ -285,7 +275,7 @@ public class StoreItemFragment extends BaseFragment {
                 mainTable.addCell(storeCell);
                 mainTable.addCell(projectNameAndDate);
 
-                generatePDFCommonMethods.addEmptyTableWithNoData(mainTable,1);
+                generatePDFCommonMethods.addEmptyTableWithNoData(mainTable, 1);
 
                 PdfPTable dataTable = generatePDFCommonMethods.addTableWithFixedWith(StaticUtils.pdfTableColumnThree, PageSize.A4.getWidth() - 55, new float[]{15, 65, 20}, Element.ALIGN_CENTER);
 
@@ -315,7 +305,7 @@ public class StoreItemFragment extends BaseFragment {
 
                 mainTable.addCell(removeTableBorder(dataTable));
 
-                generatePDFCommonMethods.addEmptyTableWithNoData(mainTable,1);
+                generatePDFCommonMethods.addEmptyTableWithNoData(mainTable, 1);
 
                 PdfPTable disclaimerTableTable = generatePDFCommonMethods.addTableWithFixedWith(StaticUtils.pdfTableColumnTwo, PageSize.A4.getWidth() - 55, new float[]{30, 70}, Element.ALIGN_CENTER);
 
@@ -390,8 +380,6 @@ public class StoreItemFragment extends BaseFragment {
             e.printStackTrace();
         }
     }
-
-
 
 
     void setTableWidth(PdfPTable pTable) {

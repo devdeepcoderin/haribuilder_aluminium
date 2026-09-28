@@ -3,12 +3,10 @@ package com.deepcoder.hbalum.fragments;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
@@ -21,7 +19,6 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
@@ -29,27 +26,20 @@ import com.deepcoder.hbalum.BuildConfig;
 import com.deepcoder.hbalum.R;
 import com.deepcoder.hbalum.utils.FileUtils;
 import com.deepcoder.hbalum.utils.GeneratePDFCommonMethods;
-import com.deepcoder.hbalum.utils.StaticData;
 import com.deepcoder.hbalum.utils.StaticUtils;
 import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Chunk;
-import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class BaseFragment extends Fragment {
 
@@ -137,7 +127,7 @@ public class BaseFragment extends Fragment {
         GeneratePDFCommonMethods generatePDFCommonMethods = new GeneratePDFCommonMethods();
         try {
             PdfPTable headerImageTitleTable = generatePDFCommonMethods.addTableWithFixedWith(StaticUtils.pdfTableColumnThree, PageSize.A4.getWidth(), new float[]{15, 40, 40}, Element.ALIGN_LEFT);
-            PdfPTable headerContactUsTable = generatePDFCommonMethods.addTableWithChangeWith(StaticUtils.pdfTableColumnTwo, PageSize.A4.getWidth(),100, new float[]{5, 40}, Element.ALIGN_RIGHT);
+            PdfPTable headerContactUsTable = generatePDFCommonMethods.addTableWithChangeWith(StaticUtils.pdfTableColumnTwo, PageSize.A4.getWidth(), 100, new float[]{5, 40}, Element.ALIGN_RIGHT);
             Image imgReportLogo = generatePDFCommonMethods.addAppLogoInToTable(requireContext(), R.mipmap.ic_launcher, 70, 70);
             Image emailLogo = generatePDFCommonMethods.addAppLogoInToTable(requireContext(), R.drawable.ic_email, 20, 20);
             Image phoneLogo = generatePDFCommonMethods.addAppLogoInToTable(requireContext(), R.drawable.ic_call, 20, 20);
@@ -238,7 +228,7 @@ public class BaseFragment extends Fragment {
             headerCell.setBackgroundColor(new BaseColor(95, 141, 176));
             headerCell.addElement(headerImageTitleTable);
 
-            Log.e("TAG", "TableHeaderHeight: "+headerImageTitleTable.getTotalHeight());
+            Log.e("TAG", "TableHeaderHeight: " + headerImageTitleTable.getTotalHeight());
 
             //add
             table.addCell(headerCell);

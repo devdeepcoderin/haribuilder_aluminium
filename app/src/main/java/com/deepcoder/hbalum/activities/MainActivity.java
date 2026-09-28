@@ -3,6 +3,7 @@ package com.deepcoder.hbalum.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -12,7 +13,6 @@ import com.deepcoder.hbalum.adapter.ProjectsListAdapter;
 import com.deepcoder.hbalum.databinding.ActivityMainBinding;
 import com.deepcoder.hbalum.datalayers.model.ProjectData;
 import com.deepcoder.hbalum.datalayers.storage.AppPref;
-import com.deepcoder.hbalum.hint.CustomHintData;
 import com.deepcoder.hbalum.manager.ProjectManager;
 import com.deepcoder.hbalum.utils.FileUtils;
 import com.deepcoder.hbalum.utils.PopUtils;
@@ -20,7 +20,6 @@ import com.deepcoder.hbalum.utils.StaticData;
 import com.deepcoder.hbalum.utils.StaticUtils;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends BaseActivity {
 
@@ -41,12 +40,12 @@ public class MainActivity extends BaseActivity {
         setAdapter();
         binding.rlFab.setOnClickListener(v -> showCreateNewProjectDialog());
         binding.inheader.ivRight.setOnClickListener(v -> openSettingsScreen());
-        binding.inRegister.btnRegister.setOnClickListener(v -> navigateUserToSubscriptionScreen(false));
+        binding.inRegister.btnRegister.setOnClickListener(v -> navigateUserToSubscriptionScreen());
 
         projectsListAdapter.updateData(FileUtils.lstAllProjects);
         //setVisibilityOfRegisterView();
         if (!AppPref.getInstance(this).getValue(StaticData.HINT_DONE, false)) {
-            new Handler().postDelayed(this::showHintView, 1000);
+            new Handler(Looper.getMainLooper()).postDelayed(this::showHintView, 1000);
         }
 
     }
@@ -94,8 +93,6 @@ public class MainActivity extends BaseActivity {
 
     private void showHintView() {
         binding.inheader.ivRight.getParent().requestChildFocus(binding.inheader.ivRight, binding.inheader.ivRight);
-        List<CustomHintData> lstCustomHintData = new ArrayList<>();
-        lstCustomHintData.add(new CustomHintData("Configure Data", "Please setup values of all data before start using. \n Top of screen to configure values."));
     }
 
 
@@ -105,14 +102,14 @@ public class MainActivity extends BaseActivity {
      * else if he is paid user then we will hide trial register view and let user to user application.
      */
     private void setVisibilityOfRegisterView() {
-        checkUserTrialPeriod(appPref.getValue(StaticData.PREF_PAYMENT_STATUS, false));
+        checkUserTrialPeriod();
         if (appPref.getValue(StaticData.PREF_PAYMENT_STATUS, false)) {
             binding.inRegister.llRegisterMain.setVisibility(View.GONE);
             projectsListAdapter.updateData(FileUtils.lstAllProjects);
         }
     }
 
-    private void checkUserTrialPeriod(boolean isPaid) {
+    private void checkUserTrialPeriod() {
         appPref.setValue(StaticData.PREF_PAYMENT_STATUS, true);
         appPref.setValue(StaticData.PREF_IS_TRIAL, false);
         appPref.setValue(StaticData.PREF_TRIAL_DAYS, 0);
@@ -138,7 +135,6 @@ public class MainActivity extends BaseActivity {
     public void refreshData() {
         runOnUiThread(() -> {
                     projectsListAdapter.updateData(FileUtils.lstAllProjects);
-                    projectsListAdapter.notifyDataSetChanged();
                     if (FileUtils.lstAllProjects.isEmpty()) {
                         binding.rvProjects.setEmptyData(getString(R.string.no_data_found));
                     } else {
@@ -167,20 +163,9 @@ public class MainActivity extends BaseActivity {
         });
     }
 
-
-    /**
-     * Method to navigate user to Register full screen view when trial is over as well as user tap on "registerNow" button.
-     */
-    /*private void navigateUserToRegisterScreen() {
+    private void navigateUserToSubscriptionScreen() {
         Intent intent = new Intent(this, SubscriptionActivity.class);
         navigateToDifferentScreen(intent);
-    }*/
-    private void navigateUserToSubscriptionScreen(Boolean isFinish) {
-        Intent intent = new Intent(this, SubscriptionActivity.class);
-        navigateToDifferentScreen(intent);
-        if (isFinish) {
-            finish();
-        }
     }
 
 

@@ -1,7 +1,9 @@
 package com.deepcoder.hbalum.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -13,7 +15,7 @@ import com.deepcoder.hbalum.databinding.ActivityWebviewAllBinding;
 import com.deepcoder.hbalum.utils.StaticData;
 import com.deepcoder.hbalum.utils.StaticUtils;
 
-import java.util.HashMap;
+import java.util.Locale;
 
 public class WebViewActivity extends BaseActivity {
     private ActivityWebviewAllBinding binding;
@@ -25,23 +27,51 @@ public class WebViewActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityWebviewAllBinding.inflate(getLayoutInflater());
-        StaticUtils.fullScreenModeManage(getWindow(),binding.getRoot());
+        StaticUtils.fullScreenModeManage(getWindow(), binding.getRoot());
         setContentView(binding.getRoot());
         init();
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     private void init() {
         setupToolBar();
-        WebSettings settings = binding.wvAll.getSettings();
-        settings.setJavaScriptEnabled(true);
         String redirectUrl = getIntent().getStringExtra("redirectUrl");
-        subscriptionId = getIntent().getStringExtra("subscriptionId");
-        orderTrackingId = getIntent().getStringExtra("orderTrackingId");
+        if (redirectUrl == null
+                || redirectUrl.isEmpty()
+                || isUntrustedPaymentUrl(Uri.parse(redirectUrl))) {
+            Toast.makeText(this, R.string.invalid_payment_url, Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
+
+        subscriptionId = getStringExtraOrEmpty("subscriptionId");
+        orderTrackingId = getStringExtraOrEmpty("orderTrackingId");
+
+        WebSettings settings = binding.wvAll.getSettings();
+        // PesaPal's hosted checkout requires JavaScript. Restrict the WebView to HTTPS
+        // PesaPal pages and remove local file/content access before enabling it.
+        settings.setAllowFileAccess(false);
+        settings.setAllowContentAccess(false);
+        settings.setMixedContentMode(WebSettings.MIXED_CONTENT_NEVER_ALLOW);
+        settings.setJavaScriptEnabled(true);
         binding.wvAll.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
-        binding.wvAll.getSettings().setUseWideViewPort(true);
-        binding.wvAll.getSettings().setLoadWithOverviewMode(true);
-        binding.wvAll.loadUrl(redirectUrl);
+        settings.setUseWideViewPort(true);
+        settings.setLoadWithOverviewMode(true);
         binding.wvAll.setWebViewClient(new MyWebViewClient());
+        binding.wvAll.loadUrl(redirectUrl);
+    }
+
+    private String getStringExtraOrEmpty(String name) {
+        String value = getIntent().getStringExtra(name);
+        return value == null ? "" : value;
+    }
+
+    private boolean isUntrustedPaymentUrl(Uri uri) {
+        String host = uri.getHost();
+        return !"https".equalsIgnoreCase(uri.getScheme())
+                || host == null
+                || (!"pesapal.com".equalsIgnoreCase(host)
+                && !host.toLowerCase(Locale.US).endsWith(".pesapal.com"));
     }
 
     private void setupToolBar() {
@@ -64,7 +94,7 @@ public class WebViewActivity extends BaseActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    private void pesapalSuccess(HashMap<String, Object> purchaseMap) {
+    private void pesapalSuccess() {
         showLoading();
         hideLoading();
         appPref.setValue(StaticData.PREF_PAYMENT_STATUS, true);
@@ -82,22 +112,16 @@ public class WebViewActivity extends BaseActivity {
                 Intent intent = new Intent(WebViewActivity.this, MainActivity.class);
                 navigateToDifferentScreen(intent);
                 finish();
+                return true;
             } else if (url.contains("PaymentConfirmation")) {
                 if (!subscriptionId.isEmpty() && !orderTrackingId.isEmpty()) {
-                    HashMap<String, Object> purchaseMap = new HashMap<>();
-                    purchaseMap.put("subscription_id", subscriptionId);
-                    purchaseMap.put("order_tracking_id", orderTrackingId);
-                    pesapalSuccess(purchaseMap);
+                    pesapalSuccess();
                 }
-            } else {
-                view.loadUrl(request.getUrl().toString());
+                return true;
             }
 
-            if ("cybqa.pesapal.com".equals(request.getUrl().getHost())) {
-                // This is my website, so do not override; let my WebView load the page
-                return false;
-            }
-            return true;
+            // Keep JavaScript-enabled navigation inside PesaPal's HTTPS origin.
+            return isUntrustedPaymentUrl(request.getUrl());
         }
 
         @Override

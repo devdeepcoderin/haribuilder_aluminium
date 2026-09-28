@@ -2,7 +2,6 @@ package com.deepcoder.hbalum.activities;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 import androidx.activity.OnBackPressedCallback;
 
@@ -19,8 +18,8 @@ public class RegisterUserActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding =ActivityRegisterUserBinding.inflate(getLayoutInflater());
-        StaticUtils.fullScreenModeManage(getWindow(),binding.getRoot());
+        binding = ActivityRegisterUserBinding.inflate(getLayoutInflater());
+        StaticUtils.fullScreenModeManage(getWindow(), binding.getRoot());
         setContentView(binding.getRoot());
 
         setupToolBar();
@@ -44,7 +43,7 @@ public class RegisterUserActivity extends BaseActivity {
     }
 
     private void init() {
-        if (appPref.getValue(StaticData.PREF_IS_APPLIED,false)){
+        if (appPref.getValue(StaticData.PREF_IS_APPLIED, false)) {
             binding.btnRegisterNow.setText(getString(R.string.register_again));
             binding.tvRegisterTitle.setText(getString(R.string.applied_message));
             binding.tvRegisterDetail.setText(getString(R.string.registered_detail));
@@ -68,7 +67,7 @@ public class RegisterUserActivity extends BaseActivity {
     private void requestToRegisterUser() {
         showLoading();
         hideLoading();
-        appPref.setValue(StaticData.PREF_IS_APPLIED,true);
+        appPref.setValue(StaticData.PREF_IS_APPLIED, true);
         showSnackbar(getString(R.string.successfully_registered_message));
         init();
     }

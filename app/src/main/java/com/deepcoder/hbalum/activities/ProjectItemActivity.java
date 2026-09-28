@@ -1,11 +1,10 @@
 package com.deepcoder.hbalum.activities;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
-
-import androidx.core.view.WindowCompat;
 
 import com.deepcoder.hbalum.R;
 import com.deepcoder.hbalum.adapter.ProjectsItemListAdapter;
@@ -19,21 +18,25 @@ import com.deepcoder.hbalum.old.p006a.p008b.DrawingManager;
 import com.deepcoder.hbalum.utils.PopUtils;
 import com.deepcoder.hbalum.utils.StaticData;
 import com.deepcoder.hbalum.utils.StaticUtils;
+import com.deepcoder.hbalum.utils.logger.CustomLog;
 
 import java.util.ArrayList;
 
 public class ProjectItemActivity extends BaseActivity {
+    private static final String TAG = ProjectItemActivity.class.getSimpleName();
+
     ProjectsItemListAdapter itemListAdapter;
     private ActivityProjectItemBinding binding;
 
     ProjectData projectData;
     private int itemPosition;
+    private int notifiedItemCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityProjectItemBinding.inflate(getLayoutInflater());
-        StaticUtils.fullScreenModeManage(getWindow(),binding.getRoot());
+        StaticUtils.fullScreenModeManage(getWindow(), binding.getRoot());
         setContentView(binding.getRoot());
         init();
     }
@@ -42,7 +45,7 @@ public class ProjectItemActivity extends BaseActivity {
     protected void onPause() {
         super.onPause();
         if (DesignActivity.projectManager != null) {
-            DesignActivity.projectManager.generateXMLFile(false,-1);
+            DesignActivity.projectManager.generateXMLFile(false, -1);
         }
     }
 
@@ -72,8 +75,16 @@ public class ProjectItemActivity extends BaseActivity {
     }
 
     private void getBundleData() {
-        projectData = getIntent().getParcelableExtra("projectData");
-        itemPosition = getIntent().getIntExtra("position",-1);
+        projectData = getProjectDataExtra();
+        itemPosition = getIntent().getIntExtra("position", -1);
+    }
+
+    @SuppressWarnings("deprecation")
+    private ProjectData getProjectDataExtra() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            return getIntent().getParcelableExtra("projectData", ProjectData.class);
+        }
+        return getIntent().getParcelableExtra("projectData");
     }
 
     private void setupToolBar() {
@@ -92,7 +103,7 @@ public class ProjectItemActivity extends BaseActivity {
             itemListAdapter.updateList(DesignActivity.projectManager.lstProjectItems);
             refreshData();
         } catch (Exception e) {
-            e.printStackTrace();
+            CustomLog.errorException(TAG, e);
         }
     }
 
@@ -105,7 +116,7 @@ public class ProjectItemActivity extends BaseActivity {
 
             @Override
             public void onLongItemSelected(int position, ProjectItemManager projectData) {
-                showLongPressedOptions(position, projectData);
+                showLongPressedOptions(position);
             }
         };
 
@@ -125,9 +136,7 @@ public class ProjectItemActivity extends BaseActivity {
     }
 
     private void EditProject() {
-        PopUtils.showCreateNewProjectDialog(this, getString(R.string.rename_project), true, projectData,getString(R.string.save), dialogData -> {
-            editProject(projectData, dialogData,itemPosition);
-        }, view -> {
+        PopUtils.showCreateNewProjectDialog(this, getString(R.string.rename_project), true, projectData, getString(R.string.save), dialogData -> editProject(projectData, dialogData, itemPosition), view -> {
 
         }, view -> {
 
@@ -176,7 +185,7 @@ public class ProjectItemActivity extends BaseActivity {
     }
 
 
-    private void showLongPressedOptions(int position, ProjectItemManager projectData) {
+    private void showLongPressedOptions(int position) {
         ArrayList<BottomSheetData> lstOptions = prepareBottomSheetLongData();
         PopUtils.showOptionsWithItems(this, position, getString(R.string.select_option), lstOptions, this::doAfterProjectOptionSelected);
     }
@@ -224,7 +233,7 @@ public class ProjectItemActivity extends BaseActivity {
                 showProjectItemDetail(DesignActivity.projectManager.lstProjectItems.get(lstPosition));
                 break;
             case 3:
-                showDeleteItemConformDialog(lstPosition, DesignActivity.projectManager.lstProjectItems.get(lstPosition));
+                showDeleteItemConformDialog(lstPosition);
                 break;
 
         }
@@ -236,7 +245,7 @@ public class ProjectItemActivity extends BaseActivity {
     }
 
     private void deleteProjectAndBackToListingScreen() {
-        deleteProject(itemPosition,projectData);
+        deleteProject(itemPosition, projectData);
         finish();
 
     }
@@ -251,9 +260,7 @@ public class ProjectItemActivity extends BaseActivity {
 
 
     private void showCreateNewItemDialog() {
-        PopUtils.showCreateNewProjectItemDialog(this, getString(R.string.new_project_item),getString(R.string.txt_add), dialogData -> {
-            createNewProjectItem(dialogData.data1, dialogData.data2, dialogData.data3);
-        }, view -> {
+        PopUtils.showCreateNewProjectItemDialog(this, getString(R.string.new_project_item), getString(R.string.txt_add), dialogData -> createNewProjectItem(dialogData.data1, dialogData.data2, dialogData.data3), view -> {
 
         }, view -> {
 
@@ -264,7 +271,7 @@ public class ProjectItemActivity extends BaseActivity {
         DesignActivity.drawingManager = new DrawingManager();
         DesignActivity.drawingManager.projectItemManager = DesignActivity.projectManager.createProjectItem(ProjectSubItemManager.getProjectSubItem(StaticData.ALUMINIMUM_UUID));
         DesignActivity.drawingManager.projectItemManager.itemQuantity = Integer.valueOf(qty);
-        DesignActivity.drawingManager.m1226a((float) Integer.valueOf(width), (float) Integer.valueOf(height));
+        DesignActivity.drawingManager.m1226a((float) Integer.parseInt(width), (float) Integer.parseInt(height));
         DesignActivity.projectManager.lstProjectItems.add(DesignActivity.drawingManager.projectItemManager);
         navigateToDesignScreen(-1);
     }
@@ -272,8 +279,8 @@ public class ProjectItemActivity extends BaseActivity {
 
     public void refreshData() {
         runOnUiThread(() -> {
-            itemListAdapter.notifyDataSetChanged();
-            if (DesignActivity.projectManager == null ) {
+            notifyProjectItemsChanged();
+            if (DesignActivity.projectManager == null) {
                 binding.rvItem.setEmptyData(getString(R.string.no_data_found));
                 return;
             }
@@ -285,8 +292,22 @@ public class ProjectItemActivity extends BaseActivity {
         });
     }
 
+    private void notifyProjectItemsChanged() {
+        int itemCount = itemListAdapter.getItemCount();
+        int commonItemCount = Math.min(notifiedItemCount, itemCount);
+        if (commonItemCount > 0) {
+            itemListAdapter.notifyItemRangeChanged(0, commonItemCount);
+        }
+        if (itemCount > notifiedItemCount) {
+            itemListAdapter.notifyItemRangeInserted(notifiedItemCount, itemCount - notifiedItemCount);
+        } else if (itemCount < notifiedItemCount) {
+            itemListAdapter.notifyItemRangeRemoved(itemCount, notifiedItemCount - itemCount);
+        }
+        notifiedItemCount = itemCount;
+    }
 
-    private void showDeleteItemConformDialog(int lstPosition, ProjectItemManager projectItemManager) {
+
+    private void showDeleteItemConformDialog(int lstPosition) {
         PopUtils.showCustomViewWithButtons(this, getString(R.string.delete_item),
                 getString(R.string.current_item_delete_conform_msg), getString(R.string.yes), getString(R.string.no), view -> deleteProjectItem(lstPosition));
 
@@ -294,6 +315,8 @@ public class ProjectItemActivity extends BaseActivity {
 
     private void deleteProjectItem(int lstPosition) {
         DesignActivity.projectManager.lstProjectItems.remove(lstPosition);
+        notifiedItemCount--;
+        itemListAdapter.notifyItemRemoved(lstPosition);
         refreshData();
     }
 
@@ -304,6 +327,9 @@ public class ProjectItemActivity extends BaseActivity {
     private void copyProjectItemAndRefreshData(ProjectItemManager projectItemManager) {
         PopUtils.copyProjectItem(this, getString(R.string.copy_item), projectItemManager, DesignActivity.projectManager.getProjectItemNumber(), dialogData -> {
             copyProjectItem(dialogData, projectItemManager.drawData());
+            int insertedPosition = DesignActivity.projectManager.lstProjectItems.size() - 1;
+            notifiedItemCount++;
+            itemListAdapter.notifyItemInserted(insertedPosition);
             refreshData();
         }, view -> {
 
@@ -315,6 +341,10 @@ public class ProjectItemActivity extends BaseActivity {
     private void editProjectItem(ProjectItemManager projectItemManager) {
         PopUtils.editProjectItem(this, getString(R.string.add_qty), projectItemManager, dialogData -> {
             editProjectItemData(dialogData, projectItemManager);
+            int changedPosition = DesignActivity.projectManager.lstProjectItems.indexOf(projectItemManager);
+            if (changedPosition > -1) {
+                itemListAdapter.notifyItemChanged(changedPosition);
+            }
             refreshData();
         }, view -> {
 

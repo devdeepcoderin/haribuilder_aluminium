@@ -2,15 +2,9 @@ package com.deepcoder.hbalum.activities;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
-
-import androidx.appcompat.widget.AppCompatImageButton;
-import androidx.appcompat.widget.AppCompatTextView;
 
 import com.deepcoder.hbalum.R;
-import com.deepcoder.hbalum.databinding.ActivityForgotPasswordBinding;
 import com.deepcoder.hbalum.databinding.ActivityPriceEstimationBinding;
-import com.deepcoder.hbalum.databinding.ItemDefultSettingsContainerBinding;
 import com.deepcoder.hbalum.databinding.ItemPriceEstimationBinding;
 import com.deepcoder.hbalum.datalayers.model.PriceEstimationTable;
 import com.deepcoder.hbalum.utils.StaticUtils;
@@ -28,7 +22,7 @@ public class PriceEstimationActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityPriceEstimationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        StaticUtils.fullScreenModeManage(getWindow(),binding.getRoot());
+        StaticUtils.fullScreenModeManage(getWindow(), binding.getRoot());
         init();
         setOnClickLisner();
     }

@@ -54,7 +54,6 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Locale;
@@ -99,7 +98,7 @@ public class QuotationFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentQuotationBinding.inflate(inflater, container, false);
-        StaticUtils.fullScreenModeManage(requireActivity().getWindow(),binding.getRoot());
+        StaticUtils.fullScreenModeManage(requireActivity().getWindow(), binding.getRoot());
         binding.btnCreatePdf.setOnClickListener(v -> onViewClicked());
         init();
         return binding.getRoot();
@@ -645,7 +644,7 @@ public class QuotationFragment extends BaseFragment {
                 }
             }
 
-        }else {
+        } else {
             binding.clUserDetails.getRoot().setVisibility(View.VISIBLE);
             ArrayList<Bitmap> bitmapsQuotationList = new ArrayList<>();
 

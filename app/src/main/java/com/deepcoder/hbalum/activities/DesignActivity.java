@@ -28,12 +28,16 @@ import com.deepcoder.hbalum.old.p006a.p008b.WingFunction;
 import com.deepcoder.hbalum.utils.PopUtils;
 import com.deepcoder.hbalum.utils.SimpleItemGestureTouch;
 import com.deepcoder.hbalum.utils.StaticUtils;
+import com.deepcoder.hbalum.utils.logger.CustomLog;
 import com.deepcoder.hbalum.utils.view.DrawingView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 
 public class DesignActivity extends BaseActivity implements View.OnTouchListener, View.OnDragListener {
+    private static final String TAG = DesignActivity.class.getSimpleName();
+
     public static DrawingManager drawingManager;
     public static ProjectManager projectManager;
     public static DrawingView drawingView;
@@ -51,7 +55,7 @@ public class DesignActivity extends BaseActivity implements View.OnTouchListener
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         binding = ActivityDesignBinding.inflate(getLayoutInflater());
-        StaticUtils.fullScreenModeManage(getWindow(),binding.getRoot());
+        StaticUtils.fullScreenModeManage(getWindow(), binding.getRoot());
         setContentView(binding.getRoot());
         getBundleData();
         init();
@@ -65,7 +69,7 @@ public class DesignActivity extends BaseActivity implements View.OnTouchListener
     @Override
     protected void onPause() {
         super.onPause();
-        projectManager.generateXMLFile(false,-1);
+        projectManager.generateXMLFile(false, -1);
     }
 
     @Override
@@ -75,9 +79,7 @@ public class DesignActivity extends BaseActivity implements View.OnTouchListener
     }
 
     public void copyItem(ProjectItemManager projectItemManager) {
-        PopUtils.copyProjectItem(this, getString(R.string.copy_item), projectItemManager, DesignActivity.projectManager.getProjectItemNumber(), dialogData -> {
-            copyItemData(copyProjectItem(dialogData, projectItemManager.drawData()));
-        }, view -> {
+        PopUtils.copyProjectItem(this, getString(R.string.copy_item), projectItemManager, DesignActivity.projectManager.getProjectItemNumber(), dialogData -> copyItemData(copyProjectItem(dialogData, projectItemManager.drawData())), view -> {
         }, null);
 
     }
@@ -124,7 +126,7 @@ public class DesignActivity extends BaseActivity implements View.OnTouchListener
             updateItemNumber();
         } catch (Exception e) {
             if (!(e.getMessage() == null)) {
-                e.printStackTrace();
+                CustomLog.errorException(TAG, e);
                 if (BaseApplication.isShowExceptionToast) {
                     showToastForLongTime(e.getMessage());
                 }
@@ -134,7 +136,7 @@ public class DesignActivity extends BaseActivity implements View.OnTouchListener
     }
 
     public void updateItemNumber() {
-        binding.inheader.tvItemNumber.setText(drawingManager.projectItemManager.itemNumber.toString());
+        binding.inheader.tvItemNumber.setText(String.format(Locale.getDefault(), "%d", drawingManager.projectItemManager.itemNumber));
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -321,9 +323,7 @@ public class DesignActivity extends BaseActivity implements View.OnTouchListener
     }
 
     private void showCreateNewProjectDialog() {
-        PopUtils.showCreateNewProjectItemDialog(this, getString(R.string.new_project_item), getString(R.string.txt_add), dialogData -> {
-            createNewProjectItem(dialogData.data1, dialogData.data2, dialogData.data3);
-        }, view -> {
+        PopUtils.showCreateNewProjectItemDialog(this, getString(R.string.new_project_item), getString(R.string.txt_add), dialogData -> createNewProjectItem(dialogData.data1, dialogData.data2, dialogData.data3), view -> {
 
         }, view -> {
 
@@ -341,12 +341,17 @@ public class DesignActivity extends BaseActivity implements View.OnTouchListener
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
-        if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            view.startDrag(ClipData.newPlainText("", view.getTag().toString()), new View.DragShadowBuilder(view), view, 0);
-            return true;
-        }
-
-        return false;
+        return switch (motionEvent.getAction()) {
+            case MotionEvent.ACTION_DOWN -> {
+                view.startDragAndDrop(ClipData.newPlainText("", view.getTag().toString()), new View.DragShadowBuilder(view), view, 0);
+                yield true;
+            }
+            case MotionEvent.ACTION_UP -> {
+                view.performClick();
+                yield true;
+            }
+            default -> false;
+        };
     }
 
     @Override

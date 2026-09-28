@@ -1,28 +1,35 @@
 package com.deepcoder.hbalum.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 
-import androidx.annotation.Nullable;
+import android.widget.EditText;
+
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 
 import com.deepcoder.hbalum.R;
 import com.deepcoder.hbalum.databinding.ActivitySignUpBinding;
 import com.deepcoder.hbalum.utils.StaticData;
 import com.deepcoder.hbalum.utils.StaticUtils;
 
-import java.util.HashMap;
-
 public class SignUpActivity extends BaseActivity {
     private ActivitySignUpBinding binding;
+    private final ActivityResultLauncher<Intent> verifyOtpLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == RESULT_OK) {
+                    onSignUpSuccess();
+                }
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
-        StaticUtils.fullScreenModeManage(getWindow(),binding.getRoot());
+        StaticUtils.fullScreenModeManage(getWindow(), binding.getRoot());
         setContentView(binding.getRoot());
         setupClickListeners();
     }
@@ -45,80 +52,72 @@ public class SignUpActivity extends BaseActivity {
     private void onSignUpButtonClick() {
         hideKeyboard(this);
 
-        if (TextUtils.isEmpty(binding.edtFullName.getText().toString().trim())) {
+        String fullName = getTrimmedText(binding.edtFullName);
+        String email = getTrimmedText(binding.edtMailId);
+        String mobileNumber = getTrimmedText(binding.edtMobileNumber);
+        String password = getTrimmedText(binding.edtPassword);
+        String confirmPassword = getTrimmedText(binding.edtConfirmPassword);
+
+        if (TextUtils.isEmpty(fullName)) {
             showSnackbar(getString(R.string.error_info_full_name));
             return;
         }
 
-        if (!StaticUtils.isValidEmail(binding.edtMailId.getText())) {
+        if (!StaticUtils.isValidEmail(email)) {
             showSnackbar(getString(R.string.error_info_email));
             return;
         }
 
-        if (!StaticUtils.isPhoneNumberValid(binding.edtMobileNumber.getText())) {
+        if (!StaticUtils.isPhoneNumberValid(mobileNumber)) {
             showSnackbar(getString(R.string.error_info_mobile_number));
             return;
         }
 
-        if (TextUtils.isEmpty(binding.edtPassword.getText().toString().trim())) {
+        if (TextUtils.isEmpty(password)) {
             showSnackbar(getString(R.string.error_info_password));
             return;
         }
 
-        if (binding.edtPassword.getText().length() < getResources().getInteger(R.integer.password_min_length)) {
+        if (password.length() < getResources().getInteger(R.integer.password_min_length)) {
             showSnackbar(getString(R.string.error_info_password_validation));
             return;
         }
-        if (TextUtils.isEmpty(binding.edtConfirmPassword.getText())) {
+        if (TextUtils.isEmpty(confirmPassword)) {
             showSnackbar(getString(R.string.error_info_confirm_password));
             return;
         }
 
-        if (binding.edtConfirmPassword.getText().length() < getResources().getInteger(R.integer.password_min_length)) {
+        if (confirmPassword.length() < getResources().getInteger(R.integer.password_min_length)) {
             showSnackbar(getString(R.string.error_info_password_validation));
             return;
         }
 
-        if (!binding.edtPassword.getText().toString().equals(binding.edtConfirmPassword.getText().toString())) {
+        if (!password.equals(confirmPassword)) {
             showSnackbar(getString(R.string.error_info_validation_pass_confirm_pass));
             return;
         }
 
-        doRegisterUser();
+        doRegisterUser(email);
     }
 
-    private void doRegisterUser() {
+    private void doRegisterUser(String email) {
         if (isFinishing() || isDestroyed()) return;
-        if (!isNetworkConnected()) {
+        if (isNetworkUnavailable()) {
             showSnackbar(getString(R.string.no_network_connection));
             return;
         }
 
         showLoading();
-
-        HashMap<String, Object> registrationMap = new HashMap<>();
-        registrationMap.put("name", binding.edtFullName.getText().toString().trim());
-        registrationMap.put("email", binding.edtMailId.getText().toString().trim());
-        registrationMap.put("mobile", binding.edtMobileNumber.getText().toString().trim());
-        registrationMap.put("password", binding.edtPassword.getText().toString().trim());
-        registrationMap.put("dtoken", appPref.getValue(StaticData.PREF_FIREBASE_TOKEN, getString(R.string.app_name)));
-        registrationMap.put("deviceToken", StaticUtils.getUniqueId(getContentResolver()));
         hideLoading();
-        appPref.setValue(StaticData.PREF_EMAIL_ID, String.valueOf(registrationMap.get("email")));
+        appPref.setValue(StaticData.PREF_EMAIL_ID, email);
         showSnackbar(getString(R.string.success));
-        startActivityForResult(new Intent(SignUpActivity.this, VerifyOtpActivity.class)
-                .putExtra(StaticData.EXTRA_VERIFICATION_MODE, StaticData.EMAIL_VERIFICATION), StaticData.REQUEST_CODE_VERIFY_PASSWORD);
+        verifyOtpLauncher.launch(new Intent(SignUpActivity.this, VerifyOtpActivity.class)
+                .putExtra(StaticData.EXTRA_VERIFICATION_MODE, StaticData.EMAIL_VERIFICATION));
     }
 
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == StaticData.REQUEST_CODE_VERIFY_PASSWORD) {
-            if (resultCode == Activity.RESULT_OK) {
-                onSignUpSuccess();
-            }
-        }
+    private String getTrimmedText(EditText editText) {
+        CharSequence text = editText.getText();
+        return text == null ? "" : text.toString().trim();
     }
 
     private void onSignUpSuccess() {

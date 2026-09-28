@@ -17,6 +17,7 @@ import com.deepcoder.hbalum.manager.CommonDataProvider;
 import com.deepcoder.hbalum.utils.StaticUtils;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class DefaultSettingsActivity extends BaseActivity {
 
@@ -141,7 +142,7 @@ public class DefaultSettingsActivity extends BaseActivity {
             }
         });
 
-        binding.edtVat.setText(String.valueOf(appPref.getValue(AppPref.VAT, AppPref.VALUE_VAT)));
+        binding.edtVat.setText(formatFloat(appPref.getValue(AppPref.VAT, AppPref.VALUE_VAT)));
         binding.edtVat.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -185,7 +186,7 @@ public class DefaultSettingsActivity extends BaseActivity {
 
         rowBinding.edtDefaultSettingItem.setTag(item.getTag());
         appPref.setValue(item.getTag(), getFloatValueFromString(String.valueOf(getDefaultValueForDebug(item))));
-        rowBinding.edtDefaultSettingItem.setText(String.valueOf(item.getDefaultValue()));
+        rowBinding.edtDefaultSettingItem.setText(formatFloat(item.getDefaultValue()));
 
         rowLayout.addView(rowBinding.getRoot());
 
@@ -219,6 +220,10 @@ public class DefaultSettingsActivity extends BaseActivity {
 
         }
         return value;
+    }
+
+    private String formatFloat(float value) {
+        return String.format(Locale.getDefault(), "%s", value);
     }
 
     /**

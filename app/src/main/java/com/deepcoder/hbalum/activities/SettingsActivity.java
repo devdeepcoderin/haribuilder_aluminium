@@ -6,8 +6,8 @@ import android.view.View;
 
 import com.deepcoder.hbalum.R;
 import com.deepcoder.hbalum.databinding.ActivitySettingsBinding;
-import com.deepcoder.hbalum.datalayers.storage.AppPref;
-import com.deepcoder.hbalum.utils.*;
+import com.deepcoder.hbalum.utils.StaticData;
+import com.deepcoder.hbalum.utils.StaticUtils;
 
 public class SettingsActivity extends BaseActivity {
     private ActivitySettingsBinding binding;
@@ -16,7 +16,7 @@ public class SettingsActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivitySettingsBinding.inflate(getLayoutInflater());
-        StaticUtils.fullScreenModeManage(getWindow(),binding.getRoot());
+        StaticUtils.fullScreenModeManage(getWindow(), binding.getRoot());
         setContentView(binding.getRoot());
         init();
     }
@@ -60,7 +60,7 @@ public class SettingsActivity extends BaseActivity {
     }
 
     private void handleBackClick() {
-        onBackPressed();
+        getOnBackPressedDispatcher().onBackPressed();
     }
 
     private void handlePriceSettingsClick() {

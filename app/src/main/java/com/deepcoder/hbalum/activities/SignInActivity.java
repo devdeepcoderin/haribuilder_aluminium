@@ -1,35 +1,33 @@
 package com.deepcoder.hbalum.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 
 import com.deepcoder.hbalum.R;
 import com.deepcoder.hbalum.databinding.ActivityLoginBinding;
-import com.deepcoder.hbalum.datalayers.model.AuthorizationModel;
-import com.deepcoder.hbalum.datalayers.model.BaseResponse;
 import com.deepcoder.hbalum.utils.StaticData;
 import com.deepcoder.hbalum.utils.StaticUtils;
 
-import java.util.HashMap;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 public class SignInActivity extends BaseActivity {
     private ActivityLoginBinding binding;
+    private final ActivityResultLauncher<Intent> verifyOtpLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == RESULT_OK) {
+                    onSignInSuccess();
+                }
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
-        StaticUtils.fullScreenModeManage(getWindow(),binding.getRoot());
+        StaticUtils.fullScreenModeManage(getWindow(), binding.getRoot());
         setContentView(binding.getRoot());
         setupClickListeners();
     }
@@ -56,62 +54,44 @@ public class SignInActivity extends BaseActivity {
         if (isFinishing() || isDestroyed()) return;
         hideKeyboard(this);
 
-        if (binding.edtEmail.getText() == null || (binding.edtEmail.getText() != null && !StaticUtils.isValidEmail(binding.edtEmail.getText().toString().trim()))) {
+        String email = binding.edtEmail.getText() == null ? "" : binding.edtEmail.getText().toString().trim();
+        String password = binding.edtPassword.getText() == null ? "" : binding.edtPassword.getText().toString().trim();
+
+        if (!StaticUtils.isValidEmail(email)) {
             showSnackbar(getString(R.string.error_info_email));
             return;
         }
 
-        if (TextUtils.isEmpty(binding.edtPassword.getText())) {
+        if (TextUtils.isEmpty(password)) {
             showSnackbar(getString(R.string.error_info_password));
             return;
         }
 
-        if (binding.edtPassword.getText().length() < getResources().getInteger(R.integer.password_min_length)) {
+        if (password.length() < getResources().getInteger(R.integer.password_min_length)) {
             showSnackbar(getString(R.string.error_info_password_validation));
             return;
         }
 
-        if (!isNetworkConnected()) {
+        if (isNetworkUnavailable()) {
             showSnackbar(getString(R.string.no_network_connection));
             return;
         }
 
-        doLogin();
+        doLogin(email);
     }
 
-    private void doLogin() {
+    private void doLogin(String email) {
         showLoading();
-
-        HashMap<String, Object> loginMap = new HashMap<>();
-        loginMap.put("email", binding.edtEmail.getText().toString().trim());
-        loginMap.put("password", binding.edtPassword.getText().toString().trim());
-        loginMap.put("dtoken", appPref.getValue(StaticData.PREF_FIREBASE_TOKEN, getString(R.string.app_name)));
-        loginMap.put("deviceToken", StaticUtils.getUniqueId(getContentResolver()));
-
-        
+        hideLoading();
+        appPref.setValue(StaticData.PREF_EMAIL_ID, email);
+        showSnackbar(getString(R.string.success));
+        verifyOtpLauncher.launch(new Intent(SignInActivity.this, VerifyOtpActivity.class)
+                .putExtra(StaticData.EXTRA_VERIFICATION_MODE, StaticData.EMAIL_VERIFICATION));
     }
 
     private void onSignInSuccess() {
         appPref.setValue(StaticData.PREF_IS_LOGGED_IN, true);
         startActivity(new Intent(SignInActivity.this, MainActivity.class));
         finish();
-    }
-
-    private void verifyUser() {
-        appPref.setValue(StaticData.PREF_IS_LOGGED_IN, false);
-        Intent intent = new Intent(this, VerifyOtpActivity.class);
-        intent.putExtra(StaticData.EXTRA_VERIFICATION_MODE, StaticData.EMAIL_VERIFICATION);
-        startActivityForResult(intent, StaticData.REQUEST_CODE_VERIFY_PASSWORD);
-    }
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == StaticData.REQUEST_CODE_VERIFY_PASSWORD) {
-            if (resultCode == Activity.RESULT_OK) {
-                onSignInSuccess();
-            }
-        }
     }
 }

@@ -11,6 +11,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import androidx.annotation.NonNull;
+
 import com.deepcoder.hbalum.R;
 import com.deepcoder.hbalum.activities.DesignActivity;
 import com.deepcoder.hbalum.databinding.DialogChangeSizeBinding;
@@ -28,7 +30,7 @@ public class DrawingView extends View {
         super(context, attributeSet);
     }
 
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(@NonNull Canvas canvas) {
         if (DesignActivity.checkActivityOrProjectNotNull()) {
             DesignActivity.drawingManager.f744b = DesignActivity.drawingManager.projectItemManager.drawData(canvas, new RectF(40.0f, 40.0f, ((float) getWidth()) - 40.0f, (((float) getHeight()) - 40.0f) - 0.0f), true);
         }

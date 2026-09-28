@@ -2,6 +2,8 @@ package com.deepcoder.hbalum.activities;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+
 import com.deepcoder.hbalum.R;
 import com.deepcoder.hbalum.adapter.ExportPdfTabsAdapter;
 import com.deepcoder.hbalum.databinding.ActivityExportPdfBinding;
@@ -20,7 +22,7 @@ public class ExportPDFActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityExportPdfBinding.inflate(getLayoutInflater());
-        StaticUtils.fullScreenModeManage(getWindow(),binding.getRoot());
+        StaticUtils.fullScreenModeManage(getWindow(), binding.getRoot());
         setContentView(binding.getRoot());
         init();
     }
@@ -47,7 +49,7 @@ public class ExportPDFActivity extends BaseActivity {
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         // Clear the Activity's bundle of the subsidiary fragments' bundles.
         outState.clear();

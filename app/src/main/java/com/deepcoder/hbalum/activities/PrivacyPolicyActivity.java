@@ -7,6 +7,8 @@ import com.deepcoder.hbalum.R;
 import com.deepcoder.hbalum.databinding.ActivityWebviewAllBinding;
 import com.deepcoder.hbalum.utils.StaticUtils;
 
+import java.util.Objects;
+
 @SuppressLint("SetJavaScriptEnabled")
 public class PrivacyPolicyActivity extends BaseActivity {
     private ActivityWebviewAllBinding binding;
@@ -15,7 +17,7 @@ public class PrivacyPolicyActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityWebviewAllBinding.inflate(getLayoutInflater());
-        StaticUtils.fullScreenModeManage(getWindow(),binding.getRoot());
+        StaticUtils.fullScreenModeManage(getWindow(), binding.getRoot());
         setContentView(binding.getRoot());
         init();
         loadUrl();
@@ -45,6 +47,6 @@ public class PrivacyPolicyActivity extends BaseActivity {
         binding.wvAll.setInitialScale(1);
         binding.wvAll.getSettings().setLoadWithOverviewMode(true);
         binding.wvAll.getSettings().setUseWideViewPort(true);
-        binding.wvAll.loadUrl(getIntent().getStringExtra("url"));
+        binding.wvAll.loadUrl(Objects.requireNonNull(getIntent().getStringExtra("url")));
     }
 }

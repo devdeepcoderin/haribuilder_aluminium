@@ -34,8 +34,6 @@ public class BaseApplication extends MultiDexApplication {
     public void onCreate() {
 
         super.onCreate();
-        //TODO remove this line during testing
-        //if (!BuildConfig.DEBUG)
         baseApplication = this;
         MultiDex.install(this);
         StaticUtils.setWindowDimensions(this);

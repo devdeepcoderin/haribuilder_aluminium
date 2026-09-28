@@ -17,8 +17,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/tlGeneral">
+        android:layout_height="match_parent">
 
         <com.deepcoder.hbalum.utils.view.CustomRecyclerView
             android:id="@+id/rvProjects"
@@ -50,6 +49,7 @@
                 android:layout_toEndOf="@+id/tvNewProject"
                 android:contentDescription="@string/new_project"
                 app:elevation="0dp"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlayAppRoundedSquareFab"
                 app:srcCompat="@drawable/icn_add" />
 
             <androidx.appcompat.widget.AppCompatTextView

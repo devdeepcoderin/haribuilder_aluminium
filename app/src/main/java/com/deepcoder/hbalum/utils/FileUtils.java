@@ -17,7 +17,7 @@ import java.util.UUID;
 
 public class FileUtils {
 
-    public static final String FOLDER_NAME = "/Alumframe/";
+    public static final String FOLDER_NAME = "/HaribuilderAluminium/";
     public static ArrayList<ProjectData> lstAllProjects = new ArrayList<>();
 
     /**
@@ -55,9 +55,7 @@ public class FileUtils {
 
 
     public static ProjectData getProjectData(UUID uuid) {
-        Iterator it = lstAllProjects.iterator();
-        while (it.hasNext()) {
-            ProjectData projectData = (ProjectData) it.next();
+        for (ProjectData projectData : lstAllProjects) {
             if (projectData.uuid.equals(uuid)) {
                 return projectData;
             }
@@ -80,8 +78,8 @@ public class FileUtils {
     }
 
     public static Integer getNewProjectNumber() {
-        Integer valueOf = 1;
-        Iterator it = lstAllProjects.iterator();
+        int valueOf = 1;
+        Iterator<ProjectData> it = lstAllProjects.iterator();
         Integer num = valueOf;
         while (it.hasNext()) {
             ProjectData projectData = (ProjectData) it.next();

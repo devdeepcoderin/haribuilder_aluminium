@@ -297,21 +297,24 @@
     <string name="save">Save</string>
     <string name="txt_add">Add</string>
     <string name="txt_item_quantity">Item Quantity</string>
-    <string name="subscribe_title">Select Plan to Access All \n the Features of Alumframe</string>
+    <string name="subscribe_title">Select Plan to Access All \n the Features of HaribuilderAluminium</string>
     <string name="subscribe">Subscribe</string>
     <string name="subscription">Subscription</string>
     <string name="active_plan">Active Plan</string>
     <string name="getSubscription">getSubscription</string>
     <string name="subscription_plan">Subscription Plan</string>
+    <string name="subscription_amount">%1$s $</string>
+    <string name="subscription_duration">For %1$d %2$s</string>
     <string name="recommanded">Recommended For You</string>
     <string name="email">Email\u00A0\u00A0\u00A0\u00A0\u00A0:-</string>
     <string name="email_value">dinesh.hirani@deepcoder.io</string>
     <string name="contact">Contact :-</string>
     <string name="contact_value">+91 8490995981</string>
-    <string name="alumframe">AlumFrame</string>
+    <string name="alumframe">HaribuilderAluminium</string>
     <string name="sr_no">Sr. No.</string>
     <string name="items">Items</string>
     <string name="Amount">Amount</string>
     <string name="total">Total</string>
     <string name="payment">Payment</string>
+    <string name="invalid_payment_url">Unable to open the payment page.</string>
 </resources>

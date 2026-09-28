@@ -1,5 +1,6 @@
 package com.deepcoder.hbalum.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -12,71 +13,52 @@ import androidx.annotation.NonNull;
 import com.deepcoder.hbalum.BuildConfig;
 import com.deepcoder.hbalum.R;
 import com.deepcoder.hbalum.databinding.ActivitySplashBinding;
-import com.deepcoder.hbalum.utils.*;
+import com.deepcoder.hbalum.utils.PermissionUtils;
+import com.deepcoder.hbalum.utils.StaticData;
+import com.deepcoder.hbalum.utils.StaticUtils;
 
 import java.util.List;
 
+@SuppressLint("CustomSplashScreen")
 public class SplashActivity extends BaseActivity {
     private ActivitySplashBinding binding;
-    CountDownTimer waitTimer;
-    int SPLASH_TIME_OUT = 3000;
-    boolean skipCheckPermission;
-    private Uri uri;
-    private boolean isSubscription= false;
+    private static final int SPLASH_TIME_OUT = 3000;
+    private boolean skipCheckPermission;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivitySplashBinding.inflate(getLayoutInflater());
-        StaticUtils.fullScreenModeManage(getWindow(),binding.getRoot());
+        StaticUtils.fullScreenModeManage(getWindow(), binding.getRoot());
         setContentView(binding.getRoot());
         init();
         skipCheckPermission = true;
-        // throw new RuntimeException();
         getIntentData();
 
     }
 
-    void getIntentData() {
-        // getting the data from our intent in our uri.
-        uri = getIntent().getData();
-        // checking if the uri is null or not.
+    private void getIntentData() {
+        Uri uri = getIntent().getData();
         if (uri != null) {
-            // if the uri is not null then we are getting
-            // the path segments and storing it in list.
             List<String> parameters = uri.getPathSegments();
-            // after that we are extracting string
-            // from that parameters.
-            String param = parameters.get(parameters.size() - 1);
-            // on below line we are setting that string
-            // to our text view which we got as params.
-            Log.d("getIntentData", "param:   " + param);
-            if (!param.isEmpty()) {
-                if (param.equals("subscription")) {
-                    isSubscription= true;
-                  /*  Intent intent = new Intent(this, SubscriptionActivity.class);
-                    navigateToDifferentScreen(intent);
-                    finish();*/
-                }
+            if (!parameters.isEmpty()) {
+                String param = parameters.get(parameters.size() - 1);
+                Log.d("getIntentData", "param:   " + param);
             }
         }
     }
 
 
     private void init() {
-        if (binding.tvAppVersion != null) {
-            showAppVersion();
-            waitTimer = new CountDownTimer(SPLASH_TIME_OUT, 1000) {
-                public void onTick(long millisUntilFinished) {
-                    //called every 300 milliseconds, which could be used to
-                    //send messages or some other action
-                }
+        showAppVersion();
+        new CountDownTimer(SPLASH_TIME_OUT, 1000) {
+            public void onTick(long millisUntilFinished) {
+            }
 
-                public void onFinish() {
-                    checkStoragePermission();
-                }
-            }.start();
-        }
+            public void onFinish() {
+                checkStoragePermission();
+            }
+        }.start();
     }
 
     @Override
@@ -90,7 +72,7 @@ public class SplashActivity extends BaseActivity {
 
     /**
      * Method to navigate user to mainActivity.
-     * Initial value of isIntentStart is false and we are using this flag to manage duplication execution of this method due to
+     * Initial value of isIntentStart is false, and we are using this flag to manage duplication execution of this method due to
      * handler and timer which are executing in asynchronous
      * <p>
      * If it is false then only intent will fire else skip execution.
@@ -130,9 +112,7 @@ public class SplashActivity extends BaseActivity {
                 PermissionUtils.showDialogWhenDeniedPermission(this, getString(R.string.storage_permission_msg), v -> {
                     skipCheckPermission = false;
                     StaticUtils.openSettingScreen(this);
-                }, v -> {
-                    finishAffinity();
-                });
+                }, v -> finishAffinity());
             } else {
                 PermissionUtils.requestStoragePermission(this, StaticData.REQUEST_CODE_ASK_PERMISSION);
             }

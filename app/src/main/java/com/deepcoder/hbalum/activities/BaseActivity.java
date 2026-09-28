@@ -7,12 +7,13 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Color;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+import android.net.Network;
+import android.net.NetworkCapabilities;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,27 +40,31 @@ import com.deepcoder.hbalum.manager.ProjectManager;
 import com.deepcoder.hbalum.utils.FileUtils;
 import com.deepcoder.hbalum.utils.PopUtils;
 import com.deepcoder.hbalum.utils.StaticData;
+import com.deepcoder.hbalum.utils.logger.CustomLog;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.UUID;
 
+import okhttp3.ResponseBody;
 import retrofit2.Response;
 
 
 public abstract class BaseActivity extends AppCompatActivity {
+    private static final String TAG = BaseActivity.class.getSimpleName();
     public static final long BACKGROUND_CHECK_DELAY = 1000L;// Perform background/Foreground thread after 2 second
     //List of current running activities.
     //Do not forget to extend your activity to BaseActivity then only this logic will work.
     public static ArrayList<String> runningActivity = new ArrayList<>();
-    public static Handler backgroundHandler = new Handler();
-    //Add all requested user permissions here..
+    public static Handler backgroundHandler = new Handler(Looper.getMainLooper());
+    //Add all requested user permissions here
 
     /**
-     * When app goes in background here we start runnable with 1 second delay and update  isAppWentToBg flag.
-     * If isAppWentToBg if true it means app is in background else app is in foreground state.
+     * When app goes in background here we start runnable with 1-second delay and update  isAppWentToBg flag.
+     * If isAppWentToBg is true it means app is in background else app is in foreground state.
      * We have initialised isAppWentToBg flag in application class to get result of this flag in notification class or
      * service class while app is not running.
      **/
@@ -85,18 +90,12 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Window window = getWindow();
-
         // Enable edge-to-edge
         WindowCompat.setDecorFitsSystemWindows(window, false);
-
-        // Make system bars transparent
-        window.setStatusBarColor(Color.TRANSPARENT);
-        window.setNavigationBarColor(Color.TRANSPARENT);
-
-        // Control status bar icons (dark icons)
-        WindowInsetsControllerCompat controller =
+        WindowInsetsControllerCompat insetsController =
                 WindowCompat.getInsetsController(window, window.getDecorView());
-
+        insetsController.setAppearanceLightStatusBars(false);
+        insetsController.setAppearanceLightNavigationBars(false);
         initializeComponents();
     }
 
@@ -345,26 +344,22 @@ public abstract class BaseActivity extends AppCompatActivity {
                                           boolean isAnimate, boolean finishActivity, int startAnimation, int endAnimation) {
 
         try {
-            if (view != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (view != null) {
                 ActivityOptionsCompat options = ActivityOptionsCompat.
                         makeSceneTransitionAnimation(this, view, sharedElementName);
                 startActivity(nextScreenIntent, options.toBundle());
-                if (finishActivity) {
-                    finish();
-                }
             } else {
                 startActivity(nextScreenIntent);
                 if (isAnimate) {
-                    overridePendingTransition(startAnimation, endAnimation);
-                }
-
-                if (finishActivity) {
-                    finish();
+                    overrideActivityOpenTransition(startAnimation, endAnimation);
                 }
 
             }
+            if (finishActivity) {
+                finish();
+            }
         } catch (Exception e) {
-            e.printStackTrace();
+            CustomLog.errorException(TAG, e);
         }
     }
 
@@ -398,7 +393,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                 finishActivity();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            CustomLog.errorException(TAG, e);
         }
     }
 
@@ -417,13 +412,18 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     private void finishActivity() {
         try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                supportFinishAfterTransition();
-            } else {
-                finish();
-            }
+            supportFinishAfterTransition();
         } catch (Exception e) {
-            e.printStackTrace();
+            CustomLog.errorException(TAG, e);
+        }
+    }
+
+    @SuppressWarnings("deprecation")
+    private void overrideActivityOpenTransition(int startAnimation, int endAnimation) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            overrideActivityTransition(Activity.OVERRIDE_TRANSITION_OPEN, startAnimation, endAnimation);
+        } else {
+            overridePendingTransition(startAnimation, endAnimation);
         }
     }
 
@@ -437,21 +437,24 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
 
-    public void deleteProject(int position,ProjectData data) {
-        new File(data.fileName).delete();
+    public void deleteProject(int position, ProjectData data) {
+        boolean isDeleted = new File(data.fileName).delete();
+        if (!isDeleted) {
+            CustomLog.warning(TAG, "Unable to delete project file: " + data.fileName);
+        }
         DesignActivity.projectManager = null;
         if (position > -1)
             FileUtils.lstAllProjects.remove(position);
     }
 
-    public void editProject(ProjectData data, DialogData dialogData,int itemPosition) {
+    public void editProject(ProjectData data, DialogData dialogData, int itemPosition) {
         UUID uuid = data.uuid;
         try {
-            ProjectManager projectManager = ProjectManager.loadProjectFromPath(FileUtils.getProjectData(uuid).fileName);
+            ProjectManager projectManager = ProjectManager.loadProjectFromPath(Objects.requireNonNull(FileUtils.getProjectData(uuid)).fileName);
             projectManager.projectName = dialogData.data2;
-            projectManager.generateXMLFile(true,itemPosition, dialogData.data2);
+            projectManager.generateXMLFile(true, itemPosition, dialogData.data2);
         } catch (Exception e) {
-            e.printStackTrace();
+            CustomLog.errorException(TAG, e);
         }
     }
 
@@ -497,7 +500,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
-    public void handleApiError(Response response) {
+    @SuppressWarnings("unused")
+    public void handleApiError(Response<?> response) {
         hideLoading();
 
         if (response.code() == 401) {
@@ -508,31 +512,30 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (response.isSuccessful())
             return;
 
-        try {
-            APIError error;
-            if (response.errorBody() != null) {
-                error = RetrofitProvider.getConverter().convert(response.errorBody());
-                showSnackbar(error.getMessage());
+        try (ResponseBody errorBody = response.errorBody()) {
+            if (errorBody != null) {
+                APIError error = RetrofitProvider.getConverter().convert(errorBody);
+                String message = error != null ? error.getMessage() : null;
+                showSnackbar(Objects.requireNonNullElse(message, StaticData.ERROR_GENERAL_MESSAGE));
             }
         } catch (IOException e) {
+            CustomLog.errorException(TAG, e);
             showSnackbar(StaticData.ERROR_GENERAL_MESSAGE);
         }
     }
 
+    @SuppressWarnings("unused")
     public void handleApiError(Throwable t) {
         hideLoading();
 
-        if (!isNetworkConnected()) {
+        if (isNetworkUnavailable()) {
             showSnackbar(getString(R.string.no_network_connection));
             return;
         }
 
         if (t != null) {
-            t.printStackTrace();
-            if (t.getMessage() != null)
-                showSnackbar(t.getMessage());
-            else
-                showSnackbar(StaticData.ERROR_GENERAL_MESSAGE);
+            CustomLog.errorThrowable(TAG, t);
+            showSnackbar(Objects.requireNonNullElse(t.getMessage(), StaticData.ERROR_GENERAL_MESSAGE));
         } else
             showSnackbar(StaticData.ERROR_GENERAL_MESSAGE);
 
@@ -582,12 +585,25 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
 
+    public boolean isNetworkUnavailable() {
+        return !hasValidatedInternetConnection();
+    }
+
     // To check if device is connected to some network or not
-    public boolean isNetworkConnected() {
+    private boolean hasValidatedInternetConnection() {
         ConnectivityManager cm =
                 (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+        if (cm == null) {
+            return false;
+        }
+        Network activeNetwork = cm.getActiveNetwork();
+        if (activeNetwork == null) {
+            return false;
+        }
+        NetworkCapabilities networkCapabilities = cm.getNetworkCapabilities(activeNetwork);
+        return networkCapabilities != null
+                && networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+                && networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED);
     }
 
 
@@ -596,5 +612,3 @@ public abstract class BaseActivity extends AppCompatActivity {
         navigateToDifferentScreen(intent);
     }
 }
-
-

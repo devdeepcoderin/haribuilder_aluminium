@@ -128,7 +128,7 @@ public class StaticUtils {
     public static int pdfTableTextSizeTwelve = 12;
 
     public static String getCapitalizedString(String str) {
-        str = str.replaceAll("_", " ");
+        str = str.replace("_", " ");
         String[] strArray = str.split(" ");
         StringBuilder builder = new StringBuilder();
         for (String s : strArray) {

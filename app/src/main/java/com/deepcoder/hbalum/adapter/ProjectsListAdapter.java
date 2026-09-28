@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.deepcoder.hbalum.databinding.ItemProjectBinding;
 import com.deepcoder.hbalum.datalayers.model.ProjectData;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public abstract class ProjectsListAdapter extends RecyclerView.Adapter<ProjectsListAdapter.MyViewHolder> {
     protected Activity context;
@@ -21,7 +23,7 @@ public abstract class ProjectsListAdapter extends RecyclerView.Adapter<ProjectsL
 
     protected ProjectsListAdapter(Activity context, ArrayList<ProjectData> lstData) {
         this.context = context;
-        this.lstData = lstData;
+        this.lstData = new ArrayList<>(lstData);
     }
 
     @NonNull
@@ -46,9 +48,38 @@ public abstract class ProjectsListAdapter extends RecyclerView.Adapter<ProjectsL
         );
     }
 
-    public void updateData(ArrayList<ProjectData> lstProjectData){
-        this.lstData = lstProjectData;
-        notifyDataSetChanged();
+    public void updateData(ArrayList<ProjectData> lstProjectData) {
+        ArrayList<ProjectData> updatedData = new ArrayList<>(lstProjectData);
+        DiffUtil.DiffResult result = DiffUtil.calculateDiff(new DiffUtil.Callback() {
+            @Override
+            public int getOldListSize() {
+                return lstData.size();
+            }
+
+            @Override
+            public int getNewListSize() {
+                return updatedData.size();
+            }
+
+            @Override
+            public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
+                return Objects.equals(
+                        lstData.get(oldItemPosition).uuid,
+                        updatedData.get(newItemPosition).uuid
+                );
+            }
+
+            @Override
+            public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
+                ProjectData oldItem = lstData.get(oldItemPosition);
+                ProjectData newItem = updatedData.get(newItemPosition);
+                return Objects.equals(oldItem.projectName, newItem.projectName)
+                        && Objects.equals(oldItem.projectNumber, newItem.projectNumber)
+                        && Objects.equals(oldItem.fileName, newItem.fileName);
+            }
+        });
+        lstData = updatedData;
+        result.dispatchUpdatesTo(this);
 
     }
 
@@ -58,7 +89,7 @@ public abstract class ProjectsListAdapter extends RecyclerView.Adapter<ProjectsL
     }
 
 
-    static class MyViewHolder extends RecyclerView.ViewHolder {
+    public static final class MyViewHolder extends RecyclerView.ViewHolder {
         private final ItemProjectBinding binding;
 
         MyViewHolder(ItemProjectBinding binding) {

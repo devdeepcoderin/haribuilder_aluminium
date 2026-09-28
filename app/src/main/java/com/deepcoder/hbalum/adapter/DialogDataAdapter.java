@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.deepcoder.hbalum.databinding.ItemDialogDataBinding;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 
 public abstract class DialogDataAdapter extends RecyclerView.Adapter<DialogDataAdapter.MyViewHolder> {
     protected Activity context;
-    private ArrayList<BottomSheetData> lstData;
+    private final ArrayList<BottomSheetData> lstData;
 
     public abstract void onItemClick(int position, String item);
 
@@ -28,15 +29,19 @@ public abstract class DialogDataAdapter extends RecyclerView.Adapter<DialogDataA
     @Override
     public DialogDataAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ItemDialogDataBinding binding = ItemDialogDataBinding.inflate(android.view.LayoutInflater.from(parent.getContext()), parent, false);
-        return new DialogDataAdapter.MyViewHolder(binding);
+        return new MyViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull DialogDataAdapter.MyViewHolder holder, int position) {
         holder.binding.tvItemTitle.setText(lstData.get(position).title);
-        Drawable res = holder.itemView.getContext().getResources().getDrawable(lstData.get(position).imageId);
+        Drawable res = ResourcesCompat.getDrawable(
+                holder.itemView.getResources(),
+                lstData.get(position).imageId,
+                holder.itemView.getContext().getTheme()
+        );
         holder.binding.ivIcon.setImageDrawable(res);
-        holder.itemView.setOnClickListener(v ->onItemClick(position, lstData.get(position).title) );
+        holder.itemView.setOnClickListener(v -> onItemClick(position, lstData.get(position).title));
 
     }
 
@@ -46,7 +51,7 @@ public abstract class DialogDataAdapter extends RecyclerView.Adapter<DialogDataA
     }
 
 
-    class MyViewHolder extends RecyclerView.ViewHolder {
+    public static final class MyViewHolder extends RecyclerView.ViewHolder {
         private final ItemDialogDataBinding binding;
 
         MyViewHolder(ItemDialogDataBinding binding) {

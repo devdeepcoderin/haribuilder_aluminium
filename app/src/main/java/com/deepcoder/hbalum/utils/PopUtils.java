@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -231,7 +230,7 @@ public class PopUtils {
      * @param updateNowClickListener call back of update click listener.
      */
     public static void showDialogForUpdateApplication(Context context, String newAppVersion, final OnClickListener updateNowClickListener) {
-        if(context == null)
+        if (context == null)
             return;
 
         final Dialog dialog = new Dialog(context);
@@ -315,7 +314,7 @@ public class PopUtils {
     }
 
 
-    public static void showCreateNewProjectDialog(Activity context, String title, boolean isEdit, ProjectData projectData,String PosBtnName,
+    public static void showCreateNewProjectDialog(Activity context, String title, boolean isEdit, ProjectData projectData, String PosBtnName,
                                                   StringsOnDialogButtonListener dialogButtonListener,
                                                   final OnClickListener onPositiveClickListener, final OnClickListener onNegativeClickListener) {
 
@@ -439,9 +438,9 @@ public class PopUtils {
 
     public static BottomSheetDialog showOptionsWithItems(Activity context, int lstPosition, String title, ArrayList<BottomSheetData> lstData, OnStringItemClickListener clickListener) {
         BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(context);
-        DialogListDataBinding dialogListDataBinding =DialogListDataBinding.inflate(context.getLayoutInflater());
+        DialogListDataBinding dialogListDataBinding = DialogListDataBinding.inflate(context.getLayoutInflater());
         CustomRecyclerView rvMoveCategoryList = dialogListDataBinding.rvData;
-       dialogListDataBinding.inheader.tvDialogTitle.setText(title);
+        dialogListDataBinding.inheader.tvDialogTitle.setText(title);
         dialogListDataBinding.inheader.ivClose.setVisibility(View.VISIBLE);
 
         DialogDataAdapter advertiseAdapter = new DialogDataAdapter(context, lstData) {
@@ -464,7 +463,7 @@ public class PopUtils {
 
     public static BottomSheetDialog showProjectDetail(Activity context, String title, ProjectData data) {
         BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(context);
-        DialogProjectDetailBinding dialogProjectDetailBinding =DialogProjectDetailBinding.inflate(context.getLayoutInflater());
+        DialogProjectDetailBinding dialogProjectDetailBinding = DialogProjectDetailBinding.inflate(context.getLayoutInflater());
 
 
         dialogProjectDetailBinding.inheader.tvDialogTitle.setText(title);
@@ -513,7 +512,7 @@ public class PopUtils {
 
     public static BottomSheetDialog showProjectItemDetail(Activity context, String title, ProjectItemManager data) {
         BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(context);
-        
+
         DialogItemDetailBinding binding = DialogItemDetailBinding.inflate(context.getLayoutInflater());
         binding.inheader.tvDialogTitle.setText(title);
         binding.inheader.ivClose.setVisibility(View.VISIBLE);
