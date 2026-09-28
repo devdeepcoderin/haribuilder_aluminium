@@ -35,46 +35,9 @@
 
     </androidx.cardview.widget.CardView>
 
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/llPlan"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            style="@style/tvSettingTitleStyle"
-            android:text="@string/subscription_plan" />
-
-        <androidx.cardview.widget.CardView
-            style="@style/cardViewStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="@dimen/largePadding"
-            android:paddingBottom="@dimen/largePadding">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvPlan"
-                    android:visibility="gone"
-                    style="@style/tvSettingsScreenStyle"
-                    android:drawableStart="@drawable/ic_subscription"
-                    android:text="@string/subscription_plan" />
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-
     <androidx.appcompat.widget.AppCompatTextView
         style="@style/tvSettingTitleStyle"
         android:text="@string/other" />
-
 
     <androidx.cardview.widget.CardView
         style="@style/cardViewStyle"
@@ -97,8 +60,7 @@
 
                 android:text="@string/privacy_policy" />
 
-            <include
-                layout="@layout/layout_divider_horizontal" />
+            <include layout="@layout/layout_divider_horizontal" />
 
 
             <androidx.appcompat.widget.AppCompatTextView

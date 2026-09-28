@@ -38,7 +38,6 @@ public class SettingsActivity extends BaseActivity {
         binding.tvPP.setOnClickListener(this::onViewClicked);
         binding.tvShareApp.setOnClickListener(this::onViewClicked);
         binding.tvRateUs.setOnClickListener(this::onViewClicked);
-        binding.tvPlan.setOnClickListener(this::onViewClicked);
     }
 
     private void onViewClicked(View view) {
@@ -52,8 +51,6 @@ public class SettingsActivity extends BaseActivity {
             handlePrivacyPolicyClick();
         } else if (viewId == R.id.tvShareApp) {
             handleShareAppClick();
-        } else if (viewId == R.id.tvPlan) {
-            handlePlanClick(view);
         } else if (viewId == R.id.tvRateUs) {
             handleRateUsClick();
         }
@@ -73,11 +70,6 @@ public class SettingsActivity extends BaseActivity {
 
     private void handleShareAppClick() {
         StaticUtils.shareApp(this, getString(R.string.share_app_message));
-    }
-
-    private void handlePlanClick(View view) {
-        Intent intent = new Intent(this, SubscriptionActivity.class);
-        navigateToDifferentScreen(intent, view, "", false, false, 0, 0);
     }
 
     private void handleRateUsClick() {

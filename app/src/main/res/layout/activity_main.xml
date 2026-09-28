@@ -10,11 +10,6 @@
         android:id="@+id/inheader"
         layout="@layout/layout_toolbar_other" />
 
-    <include
-        android:id="@+id/inRegister"
-        layout="@layout/layout_register_status"
-        android:visibility="gone" />
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

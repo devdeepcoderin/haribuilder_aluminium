@@ -40,10 +40,7 @@ public class MainActivity extends BaseActivity {
         setAdapter();
         binding.rlFab.setOnClickListener(v -> showCreateNewProjectDialog());
         binding.inheader.ivRight.setOnClickListener(v -> openSettingsScreen());
-        binding.inRegister.btnRegister.setOnClickListener(v -> navigateUserToSubscriptionScreen());
-
         projectsListAdapter.updateData(FileUtils.lstAllProjects);
-        //setVisibilityOfRegisterView();
         if (!AppPref.getInstance(this).getValue(StaticData.HINT_DONE, false)) {
             new Handler(Looper.getMainLooper()).postDelayed(this::showHintView, 1000);
         }
@@ -104,7 +101,6 @@ public class MainActivity extends BaseActivity {
     private void setVisibilityOfRegisterView() {
         checkUserTrialPeriod();
         if (appPref.getValue(StaticData.PREF_PAYMENT_STATUS, false)) {
-            binding.inRegister.llRegisterMain.setVisibility(View.GONE);
             projectsListAdapter.updateData(FileUtils.lstAllProjects);
         }
     }
@@ -114,16 +110,7 @@ public class MainActivity extends BaseActivity {
         appPref.setValue(StaticData.PREF_IS_TRIAL, false);
         appPref.setValue(StaticData.PREF_TRIAL_DAYS, 0);
         appPref.setValue(StaticData.PREF_SUBSCRIPTION_STATUS, 1);
-        binding.inRegister.llRegisterMain.setVisibility(View.GONE);
         projectsListAdapter.updateData(FileUtils.lstAllProjects);
-    }
-
-    private void setRegisterButtonTitle() {
-        if (appPref.getValue(StaticData.PREF_IS_APPLIED, false)) {
-            binding.inRegister.btnRegister.setText(getString(R.string.register_again));
-        } else {
-            binding.inRegister.btnRegister.setText(getString(R.string.register_now));
-        }
     }
 
     private void openSettingsScreen() {
@@ -146,7 +133,6 @@ public class MainActivity extends BaseActivity {
 
     private void showCreateNewProjectDialog() {
         PopUtils.showCreateNewProjectDialog(this, getString(R.string.new_project), false, null, getString(R.string.create), dialogData -> {
-
             DesignActivity.projectManager = ProjectManager.createNewProject();
             DesignActivity.projectManager.projectNumber = dialogData.data1;
             DesignActivity.projectManager.projectName = dialogData.data2;
@@ -156,17 +142,8 @@ public class MainActivity extends BaseActivity {
             FileUtils.lstAllProjects.add(0, projectData);
             navigateToItemScreen(-1, projectData);
         }, view -> {
-
         }, view -> {
-
-
         });
     }
-
-    private void navigateUserToSubscriptionScreen() {
-        Intent intent = new Intent(this, SubscriptionActivity.class);
-        navigateToDifferentScreen(intent);
-    }
-
 
 }

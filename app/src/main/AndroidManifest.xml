@@ -27,9 +27,6 @@
         tools:targetApi="r"
         tools:replace="android:allowBackup">
         <activity
-            android:name=".activities.SubscriptionActivity"
-            android:exported="false" />
-        <activity
             android:name=".activities.WebViewActivity"
             android:exported="false" />
 
