@@ -12,6 +12,7 @@ import com.deepcoder.hbalum.old.partial.DrawingItem;
 import com.deepcoder.hbalum.old.partial.DrawingItemParent;
 import com.deepcoder.hbalum.utils.StaticData;
 import com.deepcoder.hbalum.utils.StaticUtils;
+import com.deepcoder.hbalum.utils.logger.CustomLog;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlSerializer;
@@ -23,6 +24,8 @@ import java.util.Locale;
 import java.util.UUID;
 
 public class C0142t extends C0141r {
+
+    private static final String TAG = C0142t.class.getSimpleName();
     public C0156s c0156s;
     public ArrayList<Mullion> lstMullian = new ArrayList<>();
     public ArrayList<GlazingBead> lstGlazingBead = new ArrayList(); // Contains all glazing bead including panel
@@ -574,7 +577,7 @@ public class C0142t extends C0141r {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            CustomLog.errorException(TAG, e);
         }
     }
 

@@ -52,6 +52,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import com.deepcoder.hbalum.R;
@@ -92,6 +93,8 @@ import java.util.Locale;
 import java.util.UUID;
 
 public class StaticUtils {
+
+    private static final String TAG = StaticUtils.class.getSimpleName();
 
     public static Paint paintMullionBorder;
     public static Paint paintMullionPath;
@@ -150,11 +153,11 @@ public class StaticUtils {
             try {
                 connectivityManager = (ConnectivityManager) context.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
             } catch (Exception e) {
-                e.printStackTrace();
+                CustomLog.errorException(TAG, e);
                 try {
                     connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
                 } catch (Exception e1) {
-                    e1.printStackTrace();
+                    CustomLog.errorException(TAG, e1);
                 }
             }
             if (connectivityManager != null) {
@@ -164,7 +167,7 @@ public class StaticUtils {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            CustomLog.errorException(TAG, e);
         }
         return false;
     }
@@ -187,7 +190,7 @@ public class StaticUtils {
                     Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
             context.startActivity(goToMarket);
         } catch (ActivityNotFoundException e) {
-            e.printStackTrace();
+            CustomLog.errorException(TAG, e);
         }
     }
 
@@ -256,7 +259,7 @@ public class StaticUtils {
                 return;
             inputManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         } catch (Exception e) {
-            e.printStackTrace();
+            CustomLog.errorException(TAG, e);
         }
     }
 
@@ -335,7 +338,7 @@ public class StaticUtils {
                 return res1.toString();
             }
         } catch (Exception ex) {
-            ex.printStackTrace();
+            CustomLog.errorException(TAG, ex);
         }
         return "02:00:00:00:00:00";
     }
@@ -383,7 +386,7 @@ public class StaticUtils {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            CustomLog.errorException(TAG, e);
         }
         return null;
     }
@@ -445,7 +448,7 @@ public class StaticUtils {
                     || Build.PRODUCT.equals("sdk_google")
                     || Build.HARDWARE.contains("golfdish");
         } catch (Exception e) {
-            e.printStackTrace();
+            CustomLog.errorException(TAG, e);
             return false;
         }
     }
@@ -735,7 +738,7 @@ public class StaticUtils {
                 fileOutputStream.write(bArr, 0, read);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            CustomLog.errorException(TAG, e);
         }
     }
 
@@ -754,7 +757,7 @@ public class StaticUtils {
                 fileOutputStream.flush();
                 fileOutputStream.close();
             } catch (Exception e) {
-                e.printStackTrace();
+                CustomLog.errorException(TAG, e);
             } catch (Throwable th) {
                 fileOutputStream.close();
             }
@@ -763,7 +766,7 @@ public class StaticUtils {
             try {
                 inputStream.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                CustomLog.errorException(TAG, e);
             }
         }
     }
@@ -826,7 +829,7 @@ public class StaticUtils {
                 }
             }
         } catch (NumberFormatException e) {
-            e.printStackTrace();
+            CustomLog.errorException(TAG, e);
             return Math.round(value);
         }
 
@@ -1180,13 +1183,25 @@ public class StaticUtils {
     }
 
     public static void fullScreenModeManage(Window window, View rootView) {
+        window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(ContextCompat.getColor(window.getContext(), R.color.colorPrimary));
-        WindowCompat.setDecorFitsSystemWindows(window, false);
+
+        WindowCompat.setDecorFitsSystemWindows(window, true);
+
+        WindowInsetsControllerCompat controller =
+                WindowCompat.getInsetsController(window, window.getDecorView());
+        if (controller != null) {
+            controller.show(WindowInsetsCompat.Type.statusBars());
+            controller.setAppearanceLightStatusBars(false);
+        }
+
         ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, insets) -> {
             Insets systemBarsInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(
                     systemBarsInsets.left,
-                    systemBarsInsets.top, // This adds the necessary top padding
+                    0,
                     systemBarsInsets.right,
                     systemBarsInsets.bottom
             );

@@ -9,7 +9,7 @@
         <attr name="civ_fill_color" format="color" />
     </declare-styleable>
 
-    // RecyclerView resources
+    <!-- RecyclerView resources -->
     <declare-styleable name="CustomRecyclerView">
         <attr name="gird_span" format="integer" />
         <attr name="list_type" />

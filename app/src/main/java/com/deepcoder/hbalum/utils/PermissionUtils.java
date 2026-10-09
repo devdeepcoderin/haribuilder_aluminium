@@ -23,6 +23,8 @@ import com.deepcoder.hbalum.utils.logger.CustomLog;
 
 public class PermissionUtils {
 
+    private static final String TAG = PermissionUtils.class.getSimpleName();
+
     public static String[] STORAGE_PERMISSIONS = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
     public static String[] STORAGE_PERMISSIONS_11 = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.MANAGE_EXTERNAL_STORAGE};
     private static Dialog requestPermissionDialog;
@@ -254,7 +256,7 @@ public class PermissionUtils {
             CustomLog.error("hideDialogWhenDeniedPermission", "dismiss");
             requestPermissionDialog = null;
         } catch (Exception e) {
-            e.printStackTrace();
+            CustomLog.errorException(TAG, e);
         }
     }
 

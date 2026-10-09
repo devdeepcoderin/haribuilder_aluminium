@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat;
 
 import com.deepcoder.hbalum.R;
 import com.deepcoder.hbalum.datalayers.model.WorkShopPdfModel;
+import com.deepcoder.hbalum.utils.logger.CustomLog;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.DocumentException;
@@ -26,6 +27,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 public class GeneratePDFCommonMethods {
+
+    private static final String TAG = GeneratePDFCommonMethods.class.getSimpleName();
 
     /**
      * This method is create a variable size Table where we can set the
@@ -49,7 +52,7 @@ public class GeneratePDFCommonMethods {
             pdfPTable.setWidths(columnWithRatio);
             pdfPTable.setHorizontalAlignment(tableAlignment);
         } catch (DocumentException doc) {
-            doc.printStackTrace();
+            CustomLog.errorException(TAG, doc);
         }
         return pdfPTable;
     }
@@ -73,7 +76,7 @@ public class GeneratePDFCommonMethods {
             pdfPTable.setWidths(columnWithRatio);
             pdfPTable.setHorizontalAlignment(tableAlignment);
         } catch (DocumentException doc) {
-            doc.printStackTrace();
+            CustomLog.errorException(TAG, doc);
         }
         return pdfPTable;
     }
@@ -98,9 +101,9 @@ public class GeneratePDFCommonMethods {
             imgReportLogo = Image.getInstance(bitmapLogo);
             imgReportLogo.scaleAbsolute(logoWidth, logoHeight);
         } catch (BadElementException e) {
-            e.printStackTrace();
+            CustomLog.errorException(TAG, e);
         } catch (IOException e) {
-            e.printStackTrace();
+            CustomLog.errorException(TAG, e);
         }
         return imgReportLogo;
     }
@@ -113,9 +116,9 @@ public class GeneratePDFCommonMethods {
             workshopImage = Image.getInstance(bitmapLogo);
             workshopImage.scaleAbsolute(logoWidth, logoHeight);
         } catch (BadElementException e) {
-            e.printStackTrace();
+            CustomLog.errorException(TAG, e);
         } catch (IOException e) {
-            e.printStackTrace();
+            CustomLog.errorException(TAG, e);
         }
         return workshopImage;
     }

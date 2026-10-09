@@ -36,6 +36,7 @@ import com.deepcoder.hbalum.utils.GeneratePDFCommonMethods;
 import com.deepcoder.hbalum.utils.PermissionUtils;
 import com.deepcoder.hbalum.utils.StaticData;
 import com.deepcoder.hbalum.utils.StaticUtils;
+import com.deepcoder.hbalum.utils.logger.CustomLog;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -63,6 +64,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class StoreItemFragment extends BaseFragment {
+
+    private static final String TAG = StoreItemFragment.class.getSimpleName();
     private FragmentStoreItemBinding binding;
     private ArrayList<StoreItem> mStoreItems = new ArrayList<>();
 
@@ -79,7 +82,7 @@ public class StoreItemFragment extends BaseFragment {
                     hideLoading();
                 } catch (FileNotFoundException | DocumentException e) {
                     hideLoading();
-                    e.printStackTrace();
+                    CustomLog.errorException(TAG, e);
                 }
                /* if (getScrollViewBitmap() != null)
                     mBitmapList.add(getScrollViewBitmap());
@@ -377,7 +380,7 @@ public class StoreItemFragment extends BaseFragment {
 
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            CustomLog.errorException(TAG, e);
         }
     }
 

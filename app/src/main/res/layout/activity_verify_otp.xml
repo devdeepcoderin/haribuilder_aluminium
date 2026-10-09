@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/bg_liquid_screen"
     android:focusableInTouchMode="true"
     android:orientation="vertical">
 
@@ -14,7 +15,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,51 +24,66 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvVerifyEmailDetails"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:fontFamily="@font/medium"
-                android:gravity="center"
-                android:lineSpacingExtra="8dp"
-                android:text="@string/enter_the_4_digit_code_received_this_number"
-                android:textColor="@color/gray"
-                android:textSize="14sp" />
 
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvVerifyEmailDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:fontFamily="@font/medium"
+                    android:gravity="center"
+                    android:lineSpacingExtra="8dp"
+                    android:text="@string/enter_the_4_digit_code_received_this_number"
+                    android:textColor="@color/gray"
+                    android:textSize="14sp" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilOtp"
-                style="@style/textLayoutStyle"
-                android:hint="@string/otp">
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/inputLabelStyle"
+                    android:text="@string/otp" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtOtp"
-                    style="@style/inputEditTextStyle"
-                    android:inputType="number" />
-            </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilOtp"
+                    style="@style/textLayoutStyle"
+                    app:hintEnabled="false">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilPassword"
-                style="@style/textLayoutStyle"
-                android:hint="@string/password">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtOtp"
+                        style="@style/inputEditTextStyle"
+                        android:hint="@string/otp"
+                        android:inputType="number" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtPassword"
-                    style="@style/inputEditTextStyle"
-                    android:inputType="textPassword" />
-            </com.google.android.material.textfield.TextInputLayout>
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/inputLabelStyle"
+                    android:text="@string/password" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilConformPassword"
-                style="@style/textLayoutStyle"
-                android:hint="@string/confirm_password">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilPassword"
+                    style="@style/textLayoutStyle"
+                    app:hintEnabled="false">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtConfirmPassword"
-                    style="@style/inputEditTextStyle"
-                    android:inputType="textPassword" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtPassword"
+                        style="@style/inputEditTextStyle"
+                        android:hint="@string/password"
+                        android:inputType="textPassword" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/inputLabelStyle"
+                    android:text="@string/confirm_password" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilConformPassword"
+                    style="@style/textLayoutStyle"
+                    app:hintEnabled="false">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtConfirmPassword"
+                        style="@style/inputEditTextStyle"
+                        android:hint="@string/confirm_password"
+                        android:inputType="textPassword" />
+                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
         </ScrollView>
@@ -105,7 +120,6 @@
                 android:background="?android:attr/selectableItemBackground"
                 android:fontFamily="@font/semibold"
                 android:gravity="center"
-
                 android:text="@string/resend"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/extraMediumSize" />

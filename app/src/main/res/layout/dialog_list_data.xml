@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="@drawable/bg_glass_bottom_sheet"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/normalPadding">
 
     <include
         android:id="@+id/inheader"
@@ -13,8 +15,9 @@
         android:id="@+id/rvData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="@dimen/smallPadding"
+        app:gird_span="2"
         app:list_orientation="vertical"
-        app:list_type="grid"
-        app:gird_span="2"/>
+        app:list_type="grid" />
 
 </LinearLayout>

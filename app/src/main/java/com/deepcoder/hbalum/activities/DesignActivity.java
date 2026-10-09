@@ -28,8 +28,8 @@ import com.deepcoder.hbalum.old.p006a.p008b.WingFunction;
 import com.deepcoder.hbalum.utils.PopUtils;
 import com.deepcoder.hbalum.utils.SimpleItemGestureTouch;
 import com.deepcoder.hbalum.utils.StaticUtils;
-import com.deepcoder.hbalum.utils.logger.CustomLog;
 import com.deepcoder.hbalum.utils.view.DrawingView;
+import com.deepcoder.hbalum.utils.logger.CustomLog;
 
 import java.util.ArrayList;
 import java.util.Locale;

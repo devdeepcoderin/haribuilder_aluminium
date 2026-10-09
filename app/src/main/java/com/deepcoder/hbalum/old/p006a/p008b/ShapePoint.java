@@ -3,6 +3,7 @@ package com.deepcoder.hbalum.old.p006a.p008b;
 
 import com.deepcoder.hbalum.old.partial.DrawingItem;
 import com.deepcoder.hbalum.utils.StaticUtils;
+import com.deepcoder.hbalum.utils.logger.CustomLog;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlSerializer;
@@ -10,6 +11,8 @@ import org.xmlpull.v1.XmlSerializer;
 import java.util.Locale;
 
 public class ShapePoint extends DrawingPoints {
+
+    private static final String TAG = ShapePoint.class.getSimpleName();
     public DrawingItem drawingItem;
 
     public ShapePoint(float x, float y, DrawingItem drawingItem) {
@@ -40,7 +43,7 @@ public class ShapePoint extends DrawingPoints {
             xmlSerializer.attribute("", "profileID", StaticUtils.convertUUIDToString(this.drawingItem.uuid));
             xmlSerializer.endTag("", "shapePoint");
         } catch (Exception e) {
-            e.printStackTrace();
+            CustomLog.errorException(TAG, e);
         }
     }
 }

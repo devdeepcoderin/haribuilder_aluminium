@@ -6,8 +6,11 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.deepcoder.hbalum.activities.DesignActivity;
+import com.deepcoder.hbalum.utils.logger.CustomLog;
 
 public class SimpleItemGestureTouch implements View.OnTouchListener {
+
+    private static final String TAG = SimpleItemGestureTouch.class.getSimpleName();
     GestureDetector gestureDetector;
     DesignActivity designActivity;
 
@@ -61,7 +64,7 @@ public class SimpleItemGestureTouch implements View.OnTouchListener {
                     }
                     return true;
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    CustomLog.errorException(TAG, e);
                     return false;
                 }
             }

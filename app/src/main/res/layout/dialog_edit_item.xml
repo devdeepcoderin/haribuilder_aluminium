@@ -1,52 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
-    android:orientation="vertical">
+    android:background="@drawable/bg_glass_dialog"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/smallPadding">
 
-    <include android:id="@+id/inheader"
-        layout="@layout/layout_dialog_title"/>
+    <include
+        android:id="@+id/inheader"
+        layout="@layout/layout_dialog_title" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingTop="@dimen/miniPadding"
+        android:paddingBottom="@dimen/miniPadding">
 
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/inputLabelStyle"
+            android:text="@string/hint_rename_item_number" />
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/textLayoutStyle"
-            android:hint="@string/hint_rename_item_number">
+            app:hintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtItemNumber"
                 style="@style/inputEditTextStyle"
+                android:hint="@string/hint_rename_item_number"
                 android:inputType="number" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/inputLabelStyle"
+            android:text="@string/hint_add_qty" />
+
         <com.google.android.material.textfield.TextInputLayout
             style="@style/textLayoutStyle"
-            android:hint="@string/hint_add_qty">
+            app:hintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtQty"
                 style="@style/inputEditTextStyle"
+                android:hint="@string/hint_add_qty"
                 android:inputType="number" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/inputLabelStyle"
+            android:text="@string/hint_rename_item_name" />
+
         <com.google.android.material.textfield.TextInputLayout
             style="@style/textLayoutStyle"
-            android:hint="@string/hint_rename_item_name">
+            app:hintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtItemName"
-                style="@style/inputEditTextStyle"/>
+                style="@style/inputEditTextStyle"
+                android:hint="@string/hint_rename_item_name" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <include android:id="@+id/inBottomButtons"
+        <include
+            android:id="@+id/inBottomButtons"
             layout="@layout/layout_bottom_buttons" />
     </LinearLayout>
 </LinearLayout>

@@ -1,51 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
-    android:orientation="vertical">
-
-    <include layout="@layout/layout_dialog_title"/>
+    android:orientation="vertical"
+    app:strokeColor="@android:color/transparent"
+    android:elevation="@dimen/_2sdp"
+    app:cardCornerRadius="@dimen/glass_radius_lg"
+    app:cardBackgroundColor="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <include layout="@layout/layout_dialog_title" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/textLayoutStyle"
-            android:hint="@string/hint_item_width">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtWidth"
-                style="@style/inputEditTextStyle"
-                android:inputType="number" />
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/inputLabelStyle"
+                android:text="@string/hint_item_width" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/textLayoutStyle"
+                app:hintEnabled="false">
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/textLayoutStyle"
-            android:hint="@string/hint_item_height">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtWidth"
+                    style="@style/inputEditTextStyle"
+                    android:hint="@string/hint_item_width"
+                    android:inputType="number" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtHeight"
-                style="@style/inputEditTextStyle"
-                android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        </com.google.android.material.textfield.TextInputLayout>
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/inputLabelStyle"
+                android:text="@string/hint_item_height" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/textLayoutStyle"
-            android:hint="@string/qty">
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/textLayoutStyle"
+                app:hintEnabled="false">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtQty"
-                style="@style/inputEditTextStyle"
-                android:inputType="number" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtHeight"
+                    style="@style/inputEditTextStyle"
+                    android:hint="@string/hint_item_height"
+                    android:inputType="number" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <include layout="@layout/layout_bottom_buttons" />
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/inputLabelStyle"
+                android:text="@string/qty" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/textLayoutStyle"
+                app:hintEnabled="false">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtQty"
+                    style="@style/inputEditTextStyle"
+                    android:hint="@string/qty"
+                    android:inputType="number" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <include layout="@layout/layout_bottom_buttons" />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</com.google.android.material.card.MaterialCardView>

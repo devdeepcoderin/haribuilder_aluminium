@@ -77,6 +77,10 @@
     <string name="edit_item">Edit Item</string>
     <string name="txt_re_add_item">Re &amp; Add Quantity</string>
     <string name="project">Project</string>
+    <string name="project_name_with_number">Project %d</string>
+    <string name="default_item_width">1200</string>
+    <string name="default_item_height">1500</string>
+    <string name="default_item_qty">1</string>
     <string name="projects">Projects</string>
     <string name="sample_project">Sample Project</string>
     <string name="request_more_info">Request More Information</string>
@@ -98,7 +102,7 @@
     <string name="upvc_panel">UPVC Panel</string>
     <string name="aluminum_panel">Aluminum Panel</string>
     <string name="panel">Panel</string>
-    <string name="other">Other</string>
+    <string name="other">Others</string>
     <string name="tax">Tax(%)</string>
     <string name="sum_of_upper_row">Sum Of Upper Rows</string>
     <string name="total_sum">Total Sum</string>

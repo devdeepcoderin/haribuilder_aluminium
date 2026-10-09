@@ -5,26 +5,29 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:background="@android:color/transparent"
-    android:orientation="vertical">
+    android:padding="@dimen/normalPadding">
 
     <RelativeLayout
         android:id="@+id/rlMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/mediumPadding"
+        android:layout_centerInParent="true"
         android:animateLayoutChanges="true">
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/cardview_light_background"
-            app:cardCornerRadius="@dimen/normalPadding"
-            app:cardMaxElevation="@dimen/tinyPadding">
+            app:cardBackgroundColor="@color/glass_surface_strong"
+            app:cardCornerRadius="@dimen/glass_radius_lg"
+            app:cardElevation="@dimen/glass_elevation"
+            app:strokeColor="@color/glass_border_dark"
+            app:strokeWidth="@dimen/glass_stroke">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="@dimen/normalPadding">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -68,35 +71,37 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvLater"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:fontFamily="@font/regular"
+                        android:background="@drawable/bg_glass_button_soft"
+                        android:fontFamily="@font/medium"
                         android:gravity="center"
-                        android:padding="@dimen/tinyPadding"
+                        android:layout_marginEnd="@dimen/miniPadding"
+                        android:padding="@dimen/smallPadding"
                         android:text="@string/later"
                         android:textColor="@color/gray"
                         android:textSize="@dimen/normalSize" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvRateApp"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:fontFamily="@font/regular"
+                        android:background="@drawable/bg_glass_button_primary"
+                        android:fontFamily="@font/semibold"
                         android:gravity="center"
-                        android:padding="@dimen/tinyPadding"
+                        android:layout_marginStart="@dimen/miniPadding"
+                        android:padding="@dimen/smallPadding"
                         android:text="@string/rate_now"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/normalSize" />
-
 
                 </LinearLayout>
 
             </LinearLayout>
 
-
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
     </RelativeLayout>
 
     <androidx.appcompat.widget.AppCompatImageView

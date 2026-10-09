@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/cardViewStyle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/smallPadding"
-    app:cardCornerRadius="0dp"
-    app:cardElevation="@dimen/tinyPadding">
+    android:layout_margin="0dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="@dimen/glass_radius_md"
+    app:strokeWidth="@dimen/glass_stroke">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,7 +20,8 @@
             android:id="@+id/ivItem"
             android:layout_width="match_parent"
             android:layout_height="@dimen/itemImageWidthHeight"
-            android:background="@color/grey_300"
+            android:layout_marginStart="@dimen/_1sdp"
+            android:background="@color/glass_surface"
             android:scaleType="centerInside"
             android:src="@mipmap/ic_launcher" />
 
@@ -66,4 +68,4 @@
 
     </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

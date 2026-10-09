@@ -59,7 +59,7 @@ public class ProjectItemActivity extends BaseActivity {
         getBundleData();
         setupToolBar();
         setAdapter();
-        binding.rlFab.setOnClickListener(v -> showCreateNewItemDialog());
+        binding.fabAddItem.setOnClickListener(v -> showCreateNewItemDialog());
         binding.inheader.ivSecondRight.setOnClickListener(v -> {
             if (itemListAdapter.getData().isEmpty()) {
                 showToastForShortTime(getString(R.string.info_message_items_share));

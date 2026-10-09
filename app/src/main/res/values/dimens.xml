@@ -42,4 +42,12 @@
     <dimen name="card_size">60dp</dimen>
     <dimen name="pattern_spacing">90dp</dimen>
     <dimen name="itemImageWidthHeight">200dp</dimen>
+
+    <dimen name="glass_radius_sm">12dp</dimen>
+    <dimen name="glass_radius_md">18dp</dimen>
+    <dimen name="glass_radius_lg">24dp</dimen>
+    <dimen name="glass_radius_xl">28dp</dimen>
+    <dimen name="glass_stroke">1dp</dimen>
+    <dimen name="glass_elevation">6dp</dimen>
+    <dimen name="glass_dialog_padding">20dp</dimen>
 </resources>

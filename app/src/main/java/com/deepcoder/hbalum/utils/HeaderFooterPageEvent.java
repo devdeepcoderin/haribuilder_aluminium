@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat;
 
 import com.deepcoder.hbalum.R;
 import com.deepcoder.hbalum.fragments.WorkshopFragment;
+import com.deepcoder.hbalum.utils.logger.CustomLog;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
@@ -35,6 +36,8 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 
 public class HeaderFooterPageEvent extends PdfPageEventHelper {
+
+    private static final String TAG = HeaderFooterPageEvent.class.getSimpleName();
 
     private PdfTemplate t;
     private Image total;
@@ -116,7 +119,7 @@ public class HeaderFooterPageEvent extends PdfPageEventHelper {
         } catch(DocumentException de) {
             throw new ExceptionConverter(de);
         } catch (IOException e) {
-            e.printStackTrace();
+            CustomLog.errorException(TAG, e);
         }
     }
 

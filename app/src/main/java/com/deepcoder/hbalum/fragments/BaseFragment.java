@@ -27,6 +27,7 @@ import com.deepcoder.hbalum.R;
 import com.deepcoder.hbalum.utils.FileUtils;
 import com.deepcoder.hbalum.utils.GeneratePDFCommonMethods;
 import com.deepcoder.hbalum.utils.StaticUtils;
+import com.deepcoder.hbalum.utils.logger.CustomLog;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
@@ -42,6 +43,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class BaseFragment extends Fragment {
+
+    private static final String TAG = BaseFragment.class.getSimpleName();
 
     private Dialog mProgressDialog;
     int delay = 500; //milliseconds
@@ -235,7 +238,7 @@ public class BaseFragment extends Fragment {
 
 
         } catch (Exception e) {
-            e.printStackTrace();
+            CustomLog.errorException(TAG, e);
         }
 
     }
@@ -294,7 +297,7 @@ public class BaseFragment extends Fragment {
             intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             startActivity(intent);
         } catch (IOException e) {
-            e.printStackTrace();
+            CustomLog.errorException(TAG, e);
             Toast.makeText(getContext(), "Something went wrong!\n" + e.toString(), Toast.LENGTH_LONG).show();
         }
         document.close();

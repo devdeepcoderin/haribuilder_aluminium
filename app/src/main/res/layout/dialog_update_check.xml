@@ -5,21 +5,22 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:gravity="center"
-    android:orientation="vertical">
+    android:padding="@dimen/smallPadding">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="visible"
-        app:cardCornerRadius="@dimen/smallPadding"
-        app:cardUseCompatPadding="true">
+        app:cardBackgroundColor="@color/glass_surface_strong"
+        app:cardCornerRadius="@dimen/glass_radius_lg"
+        app:cardElevation="@dimen/glass_elevation"
+        app:strokeColor="@color/glass_border_dark"
+        app:strokeWidth="@dimen/glass_stroke">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
             android:orientation="vertical"
-            android:padding="@dimen/tinyPadding">
+            android:padding="@dimen/normalPadding">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -42,20 +43,19 @@
                         android:id="@+id/tvAppName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/regular"
-                        android:gravity="center_vertical"
                         android:layout_margin="@dimen/tinyPadding"
+                        android:fontFamily="@font/semibold"
+                        android:gravity="center_vertical"
                         android:text="@string/app_name"
-                        android:textSize="@dimen/normalSize"
-                        android:textStyle="bold" />
+                        android:textSize="@dimen/normalSize" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvAppVersion"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/tinyPadding"
                         android:fontFamily="@font/regular"
                         android:gravity="center_vertical"
-                        android:layout_margin="@dimen/tinyPadding"
                         android:textColor="@color/gray"
                         android:textSize="@dimen/mediumSize" />
                 </LinearLayout>
@@ -71,7 +71,6 @@
                 android:textColor="@color/gray"
                 android:textSize="@dimen/mediumSize" />
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -83,22 +82,30 @@
                     android:id="@+id/tvLater"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/smallPadding"
+                    android:background="@drawable/bg_glass_button_soft"
+                    android:fontFamily="@font/medium"
+                    android:paddingStart="@dimen/normalPadding"
+                    android:paddingTop="@dimen/smallPadding"
+                    android:paddingEnd="@dimen/normalPadding"
+                    android:paddingBottom="@dimen/smallPadding"
                     android:text="@string/cancel"
-                    android:textSize="@dimen/extraMediumSize"
-                    app:fontFamily="@font/regular" />
-
+                    android:textSize="@dimen/extraMediumSize" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvUpdateNow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/smallestPadding"
+                    android:layout_marginStart="@dimen/smallPadding"
+                    android:background="@drawable/bg_glass_button_primary"
+                    android:fontFamily="@font/semibold"
+                    android:paddingStart="@dimen/normalPadding"
+                    android:paddingTop="@dimen/smallPadding"
+                    android:paddingEnd="@dimen/normalPadding"
+                    android:paddingBottom="@dimen/smallPadding"
                     android:text="@string/check"
-                    android:textSize="@dimen/normalSize"
-                    android:textStyle="bold"
-                    app:fontFamily="@font/regular" />
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/normalSize" />
             </LinearLayout>
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 </RelativeLayout>

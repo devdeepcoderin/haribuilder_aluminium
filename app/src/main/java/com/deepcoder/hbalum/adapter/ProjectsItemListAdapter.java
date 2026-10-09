@@ -53,16 +53,22 @@ public abstract class ProjectsItemListAdapter extends RecyclerView.Adapter<Proje
 
 
         holder.binding.ivItem.setImageBitmap(designDataDetail.f776c.bitmap);
-        holder.itemView.setOnClickListener(v ->
-                onItemSelected(position, lstData.get(position))
-
-        );
+        holder.itemView.setOnClickListener(v -> {
+            int adapterPosition = holder.getBindingAdapterPosition();
+            if (adapterPosition == RecyclerView.NO_POSITION) {
+                return;
+            }
+            onItemSelected(adapterPosition, lstData.get(adapterPosition));
+        });
 
         holder.itemView.setOnLongClickListener(v -> {
-                    onLongItemSelected(position, lstData.get(position));
-                    return true;
-                }
-        );
+            int adapterPosition = holder.getBindingAdapterPosition();
+            if (adapterPosition == RecyclerView.NO_POSITION) {
+                return true;
+            }
+            onLongItemSelected(adapterPosition, lstData.get(adapterPosition));
+            return true;
+        });
     }
 
     @Override

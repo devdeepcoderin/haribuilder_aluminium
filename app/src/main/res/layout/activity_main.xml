@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_liquid_screen"
     android:orientation="vertical">
 
     <include
@@ -18,13 +19,15 @@
             android:id="@+id/rvProjects"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingBottom="@dimen/xxlargerPadding"
             app:list_orientation="vertical"
-            app:list_type="list" />
+            app:list_type="list"
+            tools:listitem="@layout/item_project" />
 
         <include
             android:id="@+id/inEmpty"
             layout="@layout/layout_recycler_emptyview" />
-
 
         <RelativeLayout
             android:id="@+id/rlFab"
@@ -35,7 +38,11 @@
             android:layout_gravity="bottom|end"
             android:layout_marginTop="@dimen/fab_margin"
             android:layout_marginEnd="@dimen/fab_margin"
-            android:layout_marginBottom="@dimen/fab_margin">
+            android:layout_marginBottom="@dimen/fab_margin"
+            android:paddingStart="@dimen/smallPadding"
+            android:paddingTop="@dimen/miniPadding"
+            android:paddingEnd="@dimen/miniPadding"
+            android:paddingBottom="@dimen/miniPadding">
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fabNewProject"
@@ -43,9 +50,11 @@
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@+id/tvNewProject"
                 android:contentDescription="@string/new_project"
+                app:backgroundTint="@color/colorPrimary"
                 app:elevation="0dp"
                 app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlayAppRoundedSquareFab"
-                app:srcCompat="@drawable/icn_add" />
+                app:srcCompat="@drawable/icn_add"
+                app:tint="@color/white" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvNewProject"
@@ -56,11 +65,10 @@
                 android:gravity="center"
                 android:padding="@dimen/microPadding"
                 android:text="@string/new_project"
-                android:textColor="#000000"
+                android:textColor="@color/black"
                 android:textSize="@dimen/extraMediumSize" />
         </RelativeLayout>
 
     </RelativeLayout>
-
 
 </LinearLayout>

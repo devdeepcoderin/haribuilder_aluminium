@@ -3,8 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?selectableItemBackground"
-    android:orientation="vertical">
+    android:background="@drawable/bg_glass_option_item"
+    android:layout_margin="@dimen/miniPadding"
+    android:orientation="vertical"
+    android:padding="@dimen/smallPadding">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivIcon"
@@ -14,12 +16,10 @@
         android:paddingTop="@dimen/smallPadding"
         android:paddingStart="@dimen/smallPadding"
         android:paddingEnd="@dimen/smallPadding"
-        app:srcCompat="@drawable/icn_edit_black"/>
+        app:srcCompat="@drawable/icn_edit_black" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvItemTitle"
-        style="@style/btnDialogBtnStyle"/>
+        style="@style/btnDialogBtnStyle" />
 
-    <include android:id="@+id/inheader"
-        layout="@layout/layout_divider_horizontal_marginless"/>
 </LinearLayout>

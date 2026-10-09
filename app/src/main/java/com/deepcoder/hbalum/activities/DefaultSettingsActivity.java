@@ -182,7 +182,9 @@ public class DefaultSettingsActivity extends BaseActivity {
     private void addViewDefaultSettingRowContainer(LinearLayout rowLayout, DefaultSettingItem item) {
         ItemDefultSettingsRowBinding rowBinding = ItemDefultSettingsRowBinding.inflate(getLayoutInflater(), rowLayout, false);
 
-        rowBinding.tilDefaultSettingItem.setHint(item.getHint() + " (" + StaticUtils.getCapitalizedString(CommonDataProvider.getUnitFromItemType(ItemTypeEnum.valueOf(item.getTag())).name()) + ")");
+        String label = item.getHint() + " (" + StaticUtils.getCapitalizedString(CommonDataProvider.getUnitFromItemType(ItemTypeEnum.valueOf(item.getTag())).name()) + ")";
+        rowBinding.tvDefaultSettingItemLabel.setText(label);
+        rowBinding.edtDefaultSettingItem.setHint(label);
 
         rowBinding.edtDefaultSettingItem.setTag(item.getTag());
         appPref.setValue(item.getTag(), getFloatValueFromString(String.valueOf(getDefaultValueForDebug(item))));

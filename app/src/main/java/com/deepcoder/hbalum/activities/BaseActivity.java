@@ -24,7 +24,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 
 import com.deepcoder.hbalum.BuildConfig;
@@ -89,14 +91,32 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        applyPrimaryStatusBar();
+        initializeComponents();
+    }
+
+    private void applyPrimaryStatusBar() {
         Window window = getWindow();
-        // Enable edge-to-edge
-        WindowCompat.setDecorFitsSystemWindows(window, false);
+        window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+
+        WindowCompat.setDecorFitsSystemWindows(window, true);
+
         WindowInsetsControllerCompat insetsController =
                 WindowCompat.getInsetsController(window, window.getDecorView());
+        insetsController.show(WindowInsetsCompat.Type.statusBars());
         insetsController.setAppearanceLightStatusBars(false);
         insetsController.setAppearanceLightNavigationBars(false);
-        initializeComponents();
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            applyPrimaryStatusBar();
+        }
     }
 
 
@@ -443,8 +463,17 @@ public abstract class BaseActivity extends AppCompatActivity {
             CustomLog.warning(TAG, "Unable to delete project file: " + data.fileName);
         }
         DesignActivity.projectManager = null;
-        if (position > -1)
+        if (position > -1 && position < FileUtils.lstAllProjects.size()
+                && Objects.equals(FileUtils.lstAllProjects.get(position).uuid, data.uuid)) {
             FileUtils.lstAllProjects.remove(position);
+            return;
+        }
+        for (int i = 0; i < FileUtils.lstAllProjects.size(); i++) {
+            if (Objects.equals(FileUtils.lstAllProjects.get(i).uuid, data.uuid)) {
+                FileUtils.lstAllProjects.remove(i);
+                break;
+            }
+        }
     }
 
     public void editProject(ProjectData data, DialogData dialogData, int itemPosition) {

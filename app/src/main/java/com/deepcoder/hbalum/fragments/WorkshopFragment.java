@@ -45,6 +45,7 @@ import com.deepcoder.hbalum.utils.GeneratePDFCommonMethods;
 import com.deepcoder.hbalum.utils.PermissionUtils;
 import com.deepcoder.hbalum.utils.StaticData;
 import com.deepcoder.hbalum.utils.StaticUtils;
+import com.deepcoder.hbalum.utils.logger.CustomLog;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
@@ -72,6 +73,8 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class WorkshopFragment extends BaseFragment {
+
+    private static final String TAG = WorkshopFragment.class.getSimpleName();
 
     private static int DISTANCE = 50;
     private FragmentWorkshopBinding binding;
@@ -140,7 +143,7 @@ public class WorkshopFragment extends BaseFragment {
                     hideLoading();
                 } catch (FileNotFoundException | DocumentException e) {
                     hideLoading();
-                    e.printStackTrace();
+                    CustomLog.errorException(TAG, e);
                 }
             }, 2000);
         } else {
@@ -575,7 +578,7 @@ public class WorkshopFragment extends BaseFragment {
         } catch (DocumentException de) {
             Log.e("PDFCreator", "DocumentException:" + de);
         } catch (IOException e) {
-            e.printStackTrace();
+            CustomLog.errorException(TAG, e);
         } finally {
             document.close();
 
@@ -949,7 +952,7 @@ public class WorkshopFragment extends BaseFragment {
 
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            CustomLog.errorException(TAG, e);
         }
     }
 

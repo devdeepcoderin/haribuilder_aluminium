@@ -2,18 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:background="@drawable/bg_glass_dialog"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/smallPadding">
 
-    <include android:id="@+id/inheader"
+    <include
+        android:id="@+id/inheader"
         layout="@layout/layout_dialog_title" />
-
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="@dimen/mediumSize"
-        android:paddingEnd="@dimen/mediumSize"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingStart="@dimen/glass_dialog_padding"
+        android:paddingTop="@dimen/smallPadding"
+        android:paddingEnd="@dimen/glass_dialog_padding"
+        android:paddingBottom="@dimen/smallPadding">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvMessage"
@@ -21,27 +25,29 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/normalPadding"
             android:layout_marginBottom="@dimen/normalPadding"
+            android:fontFamily="@font/regular"
+            android:text="@string/app_name"
             android:textColor="@color/gray"
-            android:text="@string/app_name" />
+            android:textSize="@dimen/extraMediumSize" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:gravity="end"
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnNegative"
                 style="@style/btnDialogStyle"
-                android:textColor="@color/red"
-                android:text="No"/>
+                android:layout_weight="1"
+                android:text="No"
+                android:textColor="@color/red" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnPositive"
                 style="@style/btnDialogStyle"
+                android:layout_weight="1"
                 android:text="Yes"
-                android:textColor="@color/colorPrimary"/>
+                android:textColor="@color/colorPrimary" />
 
         </LinearLayout>
     </LinearLayout>

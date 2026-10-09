@@ -4,12 +4,15 @@ package com.deepcoder.hbalum.old.p006a.p008b;
 import com.deepcoder.hbalum.enums.DrawOrientationEnum;
 import com.deepcoder.hbalum.old.partial.DrawingItemParent;
 import com.deepcoder.hbalum.utils.StaticUtils;
+import com.deepcoder.hbalum.utils.logger.CustomLog;
 
 import org.xmlpull.v1.XmlPullParser;
 
 import java.util.ArrayList;
 
 public class GlazingBead extends C0141r {
+
+    private static final String TAG = GlazingBead.class.getSimpleName();
     public Panel panel;
 
     public void mo162a() {
@@ -40,7 +43,7 @@ public class GlazingBead extends C0141r {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            CustomLog.errorException(TAG, e);
         }
     }
 

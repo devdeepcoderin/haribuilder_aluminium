@@ -1,21 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
+    <style name="AppTheme" parent="Theme.Material3.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <item name="colorSecondary">@color/lightBlue</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSurface">@color/glass_surface_strong</item>
+        <item name="android:colorBackground">@color/liquid_screen_bg</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@color/colorPrimary</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:navigationBarColor">@color/liquid_screen_bg</item>
+        <item name="android:windowBackground">@drawable/bg_liquid_screen</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog</item>
+        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.App.BottomSheetDialog</item>
         <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.App.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.App.MediumComponent
+        </item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.App.LargeComponent</item>
+    </style>
+
+    <style name="ShapeAppearance.App.SmallComponent" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/glass_radius_sm</item>
+    </style>
+
+    <style name="ShapeAppearance.App.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/glass_radius_md</item>
+    </style>
+
+    <style name="ShapeAppearance.App.LargeComponent" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/glass_radius_lg</item>
     </style>
 
     <style name="ShapeAppearanceOverlayAppRoundedSquareFab">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">@dimen/extraMediumPadding</item>
+        <item name="cornerSize">@dimen/glass_radius_md</item>
     </style>
 
-    <style name="Theme.Transparent" parent="Theme.AppCompat.NoActionBar">
+    <style name="ThemeOverlay.App.MaterialAlertDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorSurface">@color/glass_surface_strong</item>
+        <item name="android:backgroundDimAmount">0.45</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.App.LargeComponent</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/TextAppearance.App.DialogTitle</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/TextAppearance.App.DialogBody</item>
+        <item name="buttonBarPositiveButtonStyle">@style/Widget.App.DialogButton.Positive</item>
+        <item name="buttonBarNegativeButtonStyle">@style/Widget.App.DialogButton.Negative</item>
+    </style>
+
+    <style name="ThemeOverlay.App.BottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Widget.App.BottomSheet</item>
+        <item name="android:backgroundDimAmount">0.4</item>
+    </style>
+
+    <style name="Widget.App.BottomSheet" parent="Widget.Material3.BottomSheet.Modal">
+        <item name="backgroundTint">@color/glass_surface_strong</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.App.LargeComponent</item>
+    </style>
+
+    <style name="TextAppearance.App.DialogTitle" parent="MaterialAlertDialog.Material3.Title.Text">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:fontFamily">@font/medium</item>
+        <item name="android:textSize">@dimen/normalSize</item>
+    </style>
+
+    <style name="TextAppearance.App.DialogBody" parent="MaterialAlertDialog.Material3.Body.Text">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/regular</item>
+        <item name="android:textSize">@dimen/mediumSize</item>
+    </style>
+
+    <style name="Widget.App.DialogButton.Positive" parent="Widget.Material3.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:fontFamily">@font/medium</item>
+    </style>
+
+    <style name="Widget.App.DialogButton.Negative" parent="Widget.Material3.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/red</item>
+        <item name="android:fontFamily">@font/medium</item>
+    </style>
+
+    <style name="Theme.Transparent" parent="Theme.Material3.Light.NoActionBar">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowContentOverlay">@null</item>
@@ -24,14 +97,7 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
-    <style name="DialogTheme" parent="android:Theme.DeviceDefault.Light.Dialog">
-        <item name="android:windowBackground">@android:color/white</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:textColorSecondary">@android:color/black</item>
-        <item name="android:textColor">@android:color/black</item>
-        <item name="android:textColorPrimary">@android:color/black</item>
-        <item name="android:textSize">12sp</item>
-    </style>
+    <style name="DialogTheme" parent="ThemeOverlay.App.MaterialAlertDialog" />
 
     <style name="TransparentBackground" parent="@android:style/Theme.Dialog">
         <item name="android:windowNoTitle">true</item>
@@ -41,7 +107,6 @@
     <style name="AlertDialogCustom" parent="Animation.AppCompat.Dialog">
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
-
 
     <style name="DialogTitleText">
         <item name="android:layout_height">wrap_content</item>
@@ -60,8 +125,6 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
-
-    <!--  Style for  permission title and purpose of permission message-->
     <style name="permission_dialog_ButtonStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -71,10 +134,9 @@
         <item name="android:textSize">@dimen/mediumSize</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:fontFamily">@font/medium</item>
-
     </style>
 
-    <style name="recyclerview_empty_button" parent="@style/Base.Widget.AppCompat.Button.Borderless">
+    <style name="recyclerview_empty_button" parent="@style/Widget.Material3.Button.TextButton">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/gray</item>
@@ -94,13 +156,11 @@
         <item name="android:layout_margin">@dimen/smallPadding</item>
     </style>
 
-
     <style name="dialogTitleView">
-        <item name="android:fontFamily">@font/regular</item>
+        <item name="android:fontFamily">@font/medium</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">@dimen/normalSize</item>
     </style>
-
 
     <style name="tvTitleStyle">
         <item name="android:layout_width">match_parent</item>
@@ -112,7 +172,6 @@
         <item name="android:textSize">@dimen/mediumSize</item>
     </style>
 
-
     <style name="tvSettingTitleStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -123,7 +182,6 @@
         <item name="android:layout_marginStart">@dimen/mediumPadding</item>
         <item name="android:layout_marginEnd">@dimen/mediumPadding</item>
         <item name="android:textSize">@dimen/extraMediumSize</item>
-
     </style>
 
     <style name="tvSubTitleStyle">
@@ -143,19 +201,19 @@
         <item name="android:fontFamily">@font/medium</item>
         <item name="android:padding">@dimen/tinyPadding</item>
         <item name="android:textSize">@dimen/extraMediumSize</item>
-
     </style>
 
-    <style name="btnDialogStyle" parent="Widget.AppCompat.Button.Borderless">
+    <style name="btnDialogStyle" parent="Widget.Material3.Button.TextButton">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-
         <item name="android:layout_gravity">center</item>
         <item name="android:gravity">center</item>
         <item name="android:fontFamily">@font/medium</item>
         <item name="android:padding">@dimen/tinyPadding</item>
         <item name="android:textSize">@dimen/normalSize</item>
-        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
     </style>
 
     <style name="tvProjectTitleStyle">
@@ -164,12 +222,9 @@
         <item name="android:textColor">@color/black</item>
         <item name="android:fontFamily">@font/medium</item>
         <item name="android:textSize">@dimen/largeSize</item>
-        <item name="android:paddingTop">@dimen/extraMediumPadding</item>
-        <item name="android:paddingBottom">@dimen/extraMediumPadding</item>
-        <item name="android:paddingStart">@dimen/smallPadding</item>
-        <item name="android:paddingEnd">@dimen/smallPadding</item>
-    </style>
+        <item name="android:padding">@dimen/largeSize</item>
 
+    </style>
 
     <style name="tvSettingsScreenStyle">
         <item name="android:layout_width">match_parent</item>
@@ -198,7 +253,6 @@
         <item name="android:textSize">@dimen/normalSize</item>
     </style>
 
-
     <style name="ivToolbarIcon">
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_width">wrap_content</item>
@@ -214,7 +268,6 @@
     </style>
 
     <style name="btnToolbarBack">
-
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_alignParentStart">false</item>
@@ -230,37 +283,54 @@
         <item name="android:visibility">visible</item>
     </style>
 
+    <style name="inputLabelStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/normalPadding</item>
+        <item name="android:layout_marginEnd">@dimen/normalPadding</item>
+        <item name="android:layout_marginTop">@dimen/mediumPadding</item>
+        <item name="android:textColor">@color/grey_800</item>
+        <item name="android:fontFamily">@font/medium</item>
+        <item name="android:textSize">@dimen/mediumSize</item>
+    </style>
+
+    <style name="inputLabelDefaultSettingStyle" parent="inputLabelStyle">
+        <item name="android:layout_margin">@dimen/tinyPadding</item>
+        <item name="android:layout_marginTop">@dimen/smallPadding</item>
+    </style>
+
     <style name="textLayoutStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">@dimen/mediumPadding</item>
+        <item name="android:layout_marginTop">@dimen/miniPadding</item>
         <item name="android:layout_marginBottom">@dimen/mediumPadding</item>
         <item name="android:layout_marginStart">@dimen/normalPadding</item>
         <item name="android:layout_marginEnd">@dimen/normalPadding</item>
         <item name="android:padding">@dimen/tinyPadding</item>
-        <item name="android:textSize">@dimen/mediumSize</item>
-        <item name="android:textColorHint">@color/black</item>
-        <item name="android:background">@drawable/button_bg_light_gray_cornerless_border</item>
-        <item name="android:singleLine">true</item>
+        <item name="android:background">@drawable/bg_glass_input</item>
+        <item name="hintEnabled">false</item>
+        <item name="boxBackgroundMode">none</item>
     </style>
 
     <style name="textLayoutDefaultSettingStyle" parent="textLayoutStyle">
-        <item name="android:background">@drawable/button_bg_light_gray_cornerless_border</item>
+        <item name="android:background">@drawable/bg_glass_input</item>
         <item name="android:layout_margin">@dimen/tinyPadding</item>
+        <item name="android:layout_marginTop">@dimen/miniPadding</item>
+        <item name="hintEnabled">false</item>
+        <item name="boxBackgroundMode">none</item>
     </style>
-
 
     <style name="inputEditTextStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">@color/gray</item>
         <item name="android:textSize">@dimen/extraMediumSize</item>
         <item name="android:singleLine">true</item>
         <item name="android:padding">@dimen/tinyPadding</item>
         <item name="android:ellipsize">end</item>
         <item name="android:background">@null</item>
     </style>
-
 
     <style name="inputEditTextDefaultSettingStyle" parent="inputEditTextStyle">
         <item name="android:padding">@dimen/microPadding</item>
@@ -284,9 +354,11 @@
         <item name="android:layout_marginEnd">@dimen/mediumPadding</item>
         <item name="android:layout_marginTop">@dimen/smallPadding</item>
         <item name="android:layout_marginBottom">@dimen/smallPadding</item>
-        <item name="cardCornerRadius">@dimen/extraMediumPadding</item>
-        <item name="cardElevation">@dimen/stroke</item>
+        <item name="cardCornerRadius">@dimen/glass_radius_md</item>
+        <item name="cardElevation">@dimen/glass_elevation</item>
+        <item name="cardBackgroundColor">@color/white</item>
         <item name="cardPreventCornerOverlap">true</item>
+        <item name="cardUseCompatPadding">true</item>
     </style>
 
     <style name="btnDesignBottomStyle">
@@ -310,11 +382,10 @@
         <item name="android:scaleType">fitCenter</item>
     </style>
 
-
     <style name="CustomToolbar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">?android:attr/actionBarSize</item>
-        <item name="android:background">@color/white</item>
+        <item name="android:background">@drawable/bg_glass_toolbar</item>
         <item name="android:layout_alignParentTop">true</item>
     </style>
 
@@ -330,15 +401,18 @@
         <item name="android:gravity">center</item>
         <item name="android:hint">@string/big_circle</item>
         <item name="android:paddingBottom">16dp</item>
+        <item name="android:background">@drawable/bg_glass_input</item>
     </style>
 
-    <style name="ButtonStyle" parent="@style/Widget.AppCompat.Button.Borderless">
+    <style name="ButtonStyle" parent="@style/Widget.Material3.Button">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:layout_margin">@dimen/normalPadding</item>
-        <item name="android:background">@drawable/button_bg_filled_primary_corner</item>
+        <item name="android:background">@drawable/bg_glass_button_primary</item>
+        <item name="backgroundTint">@null</item>
         <item name="android:fontFamily">@font/semibold</item>
+        <item name="cornerRadius">@dimen/glass_radius_sm</item>
     </style>
 
     <style name="EditTextStyle">
@@ -396,7 +470,7 @@
         <item name="android:fontFamily">@font/regular</item>
         <item name="android:textSize">@dimen/mediumSize</item>
         <item name="android:singleLine">true</item>
-        <item name="android:background">@drawable/button_bg_light_gray_cornerless_border</item>
+        <item name="android:background">@drawable/bg_glass_input</item>
         <item name="android:paddingTop">@dimen/miniPadding</item>
         <item name="android:paddingBottom">@dimen/miniPadding</item>
         <item name="android:paddingStart">@dimen/smallPadding</item>
@@ -417,7 +491,6 @@
         <item name="android:layout_marginLeft">@dimen/mediumPadding</item>
         <item name="android:layout_marginRight">@dimen/mediumPadding</item>
         <item name="android:fontFamily">@font/medium</item>
-
     </style>
 
     <style name="hintcase_content">

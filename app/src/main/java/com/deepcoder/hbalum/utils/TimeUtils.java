@@ -1,5 +1,7 @@
 package com.deepcoder.hbalum.utils;
 
+import com.deepcoder.hbalum.utils.logger.CustomLog;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -7,8 +9,9 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.TimeZone;
 
-
 public class TimeUtils {
+
+    private static final String TAG = TimeUtils.class.getSimpleName();
 
 
     /**
@@ -24,7 +27,7 @@ public class TimeUtils {
             date = sdf.parse(updateDate);
             return date.getTime();
         } catch (Exception ex) {
-            ex.printStackTrace();
+            CustomLog.errorException(TAG, ex);
             return 0;
         }
     }
@@ -41,7 +44,7 @@ public class TimeUtils {
         try {
             return sdf.parse(dateTime);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            CustomLog.errorException(TAG, ex);
             return null;
         }
     }
@@ -59,7 +62,7 @@ public class TimeUtils {
         try {
             return sdf.parse(dateTime);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            CustomLog.errorException(TAG, ex);
             return null;
         }
     }
@@ -77,7 +80,7 @@ public class TimeUtils {
         try {
             return dateTime;
         } catch (Exception ex) {
-            ex.printStackTrace();
+            CustomLog.errorException(TAG, ex);
             return null;
         }
     }
@@ -151,7 +154,7 @@ public class TimeUtils {
             date = sdf.format(new Date(time));
             return date;
         } catch (Exception e) {
-            e.printStackTrace();
+            CustomLog.errorException(TAG, e);
         }
         return date;
     }
@@ -169,7 +172,7 @@ public class TimeUtils {
             date = sdf.format(new Date(time));
             return date;
         } catch (Exception e) {
-            e.printStackTrace();
+            CustomLog.errorException(TAG, e);
         }
         return date;
     }
@@ -187,7 +190,7 @@ public class TimeUtils {
             date = sdf.format(new Date(time));
             return date;
         } catch (Exception e) {
-            e.printStackTrace();
+            CustomLog.errorException(TAG, e);
         }
         return date;
     }
@@ -207,7 +210,7 @@ public class TimeUtils {
             date = sdf.format(new Date(time));
             return date;
         } catch (Exception e) {
-            e.printStackTrace();
+            CustomLog.errorException(TAG, e);
         }
         return date;
     }
@@ -219,7 +222,7 @@ public class TimeUtils {
             date = sdf.format(new Date(time));
             return date;
         } catch (Exception e) {
-            e.printStackTrace();
+            CustomLog.errorException(TAG, e);
         }
         return date;
     }*/

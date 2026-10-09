@@ -1,24 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
-    android:orientation="vertical">
+    android:background="@drawable/bg_glass_dialog"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/smallPadding">
 
     <include layout="@layout/layout_dialog_title" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingTop="@dimen/miniPadding"
+        android:paddingBottom="@dimen/miniPadding">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/inputLabelStyle"
+            android:text="@string/hint_project_name" />
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/textLayoutStyle"
-            android:hint="@string/hint_project_name">
+            app:hintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtProjectName"
-                style="@style/inputEditTextStyle"/>
+                style="@style/inputEditTextStyle"
+                android:hint="@string/hint_project_name" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

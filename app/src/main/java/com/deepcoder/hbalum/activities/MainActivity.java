@@ -6,8 +6,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
 
-import androidx.recyclerview.widget.DividerItemDecoration;
-
 import com.deepcoder.hbalum.R;
 import com.deepcoder.hbalum.adapter.ProjectsListAdapter;
 import com.deepcoder.hbalum.databinding.ActivityMainBinding;
@@ -38,7 +36,7 @@ public class MainActivity extends BaseActivity {
     private void init() {
         setupToolBar();
         setAdapter();
-        binding.rlFab.setOnClickListener(v -> showCreateNewProjectDialog());
+        binding.fabNewProject.setOnClickListener(v -> showCreateNewProjectDialog());
         binding.inheader.ivRight.setOnClickListener(v -> openSettingsScreen());
         projectsListAdapter.updateData(FileUtils.lstAllProjects);
         if (!AppPref.getInstance(this).getValue(StaticData.HINT_DONE, false)) {
@@ -69,8 +67,6 @@ public class MainActivity extends BaseActivity {
         binding.rvProjects.setEmptyView(binding.inEmpty.llEmptyViewMain);
         binding.rvProjects.setEmptyData(getString(R.string.fetching_data));
         binding.rvProjects.setAdapter(projectsListAdapter);
-        binding.rvProjects.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-
     }
 
     private void navigateToItemScreen(int position, ProjectData projectData) {
@@ -140,7 +136,8 @@ public class MainActivity extends BaseActivity {
             DesignActivity.projectManager.generateXMLFile(false, -1);
             ProjectData projectData = new ProjectData(DesignActivity.projectManager.file);
             FileUtils.lstAllProjects.add(0, projectData);
-            navigateToItemScreen(-1, projectData);
+            projectsListAdapter.updateData(FileUtils.lstAllProjects);
+            navigateToItemScreen(0, projectData);
         }, view -> {
         }, view -> {
         });

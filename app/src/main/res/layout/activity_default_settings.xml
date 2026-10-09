@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_light_new"
+    android:background="@drawable/bg_liquid_screen"
     android:focusableInTouchMode="true"
     android:orientation="vertical">
 
@@ -43,24 +42,34 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/inputLabelDefaultSettingStyle"
+                        android:text="@string/currency" />
+
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/textLayoutDefaultSettingStyle"
-                        android:hint="@string/currency">
+                        app:hintEnabled="false">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/edtCurrency"
-                            android:inputType="text"
-                            style="@style/inputEditTextDefaultSettingStyle" />
+                            style="@style/inputEditTextDefaultSettingStyle"
+                            android:hint="@string/currency"
+                            android:inputType="text" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/inputLabelDefaultSettingStyle"
+                        android:text="@string/vat" />
+
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/textLayoutDefaultSettingStyle"
-                        android:hint="@string/vat">
+                        app:hintEnabled="false">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/edtVat"
-                            style="@style/inputEditTextDefaultSettingStyle" />
+                            style="@style/inputEditTextDefaultSettingStyle"
+                            android:hint="@string/vat" />
 
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>

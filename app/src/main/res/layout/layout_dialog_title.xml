@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -7,9 +8,10 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:paddingTop="@dimen/mediumPadding"
-        android:paddingBottom="@dimen/mediumPadding">
+        android:background="@drawable/bg_glass_dialog_header"
+        android:paddingTop="@dimen/extraMediumPadding"
+        android:paddingBottom="@dimen/extraMediumPadding"
+        tools:ignore="UselessParent">
 
         <TextView
             android:id="@+id/tvDialogTitle"
@@ -17,7 +19,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/medium"
-            android:gravity="center" />
+            android:gravity="center"
+            android:paddingStart="@dimen/xxxlargePadding"
+            android:paddingEnd="@dimen/xxxlargePadding" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivClose"
@@ -27,7 +31,6 @@
             android:layout_marginEnd="@dimen/smallPadding"
             android:background="@drawable/icn_close"
             android:padding="@dimen/smallPadding"
-            android:visibility="gone"
-            android:paddingBottom="@dimen/smallPadding" />
+            android:visibility="gone" />
     </FrameLayout>
 </LinearLayout>

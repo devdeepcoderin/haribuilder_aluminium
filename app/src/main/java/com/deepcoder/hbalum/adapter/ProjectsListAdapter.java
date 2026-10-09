@@ -35,17 +35,24 @@ public abstract class ProjectsListAdapter extends RecyclerView.Adapter<ProjectsL
 
     @Override
     public void onBindViewHolder(@NonNull ProjectsListAdapter.MyViewHolder holder, int position) {
-        holder.binding.tvTitle.setText(lstData.get(position).projectName);
-        holder.itemView.setOnClickListener(v ->
-                onItemSelected(position, lstData.get(position))
-
-        );
+        ProjectData projectData = lstData.get(position);
+        holder.binding.tvTitle.setText(projectData.projectName);
+        holder.itemView.setOnClickListener(v -> {
+            int adapterPosition = holder.getBindingAdapterPosition();
+            if (adapterPosition == RecyclerView.NO_POSITION) {
+                return;
+            }
+            onItemSelected(adapterPosition, lstData.get(adapterPosition));
+        });
 
         holder.itemView.setOnLongClickListener(v -> {
-                    onLongItemSelected(position, lstData.get(position));
-                    return true;
-                }
-        );
+            int adapterPosition = holder.getBindingAdapterPosition();
+            if (adapterPosition == RecyclerView.NO_POSITION) {
+                return true;
+            }
+            onLongItemSelected(adapterPosition, lstData.get(adapterPosition));
+            return true;
+        });
     }
 
     public void updateData(ArrayList<ProjectData> lstProjectData) {

@@ -2,7 +2,6 @@
 <resources>
 
     <color name="colorPrimary">#3244BD</color>
-    <color name="colorPrimaryDark">#3244BD</color>
     <color name="colorAccent">#3244BD</color>
     <color name="lightBlue">#909CE4</color>
     <color name="transparent_70">#70000000</color>
@@ -46,4 +45,16 @@
     <color name="buttons_color">#ffd8d8d8</color>
     <color name="egyptianBlue">#2133A1</color>
     <color name="pdf_header_color">#82A6C5</color>
+
+    <color name="glass_white_soft">#B3FFFFFF</color>
+    <color name="glass_surface">#CCF5F5F5</color>
+    <color name="glass_surface_strong">#F2FFFFFF</color>
+    <color name="glass_border">#66FFFFFF</color>
+    <color name="glass_border_dark">#33909CE4</color>
+    <color name="glass_primary_soft">#333244BD</color>
+    <color name="glass_primary_mid">#663244BD</color>
+    <color name="glass_scrim">#66000000</color>
+    <color name="glass_input_fill">#99FFFFFF</color>
+    <color name="liquid_screen_bg">#FFF0F2FA</color>
+    <color name="liquid_screen_bg_end">#FFE8ECF8</color>
 </resources>

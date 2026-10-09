@@ -11,13 +11,19 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDefaultSettingItemLabel"
+            style="@style/inputLabelDefaultSettingStyle" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilDefaultSettingItem"
-            style="@style/textLayoutDefaultSettingStyle">
+            style="@style/textLayoutDefaultSettingStyle"
+            app:hintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtDefaultSettingItem"
-                style="@style/inputEditTextDefaultSettingStyle" />
+                style="@style/inputEditTextDefaultSettingStyle"
+                android:hint="@string/app_name" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

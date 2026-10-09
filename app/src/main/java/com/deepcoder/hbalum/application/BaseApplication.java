@@ -7,6 +7,7 @@ import com.deepcoder.hbalum.datalayers.storage.AppPref;
 import com.deepcoder.hbalum.utils.FileUtils;
 import com.deepcoder.hbalum.utils.ProjectTypeData;
 import com.deepcoder.hbalum.utils.StaticUtils;
+import com.deepcoder.hbalum.utils.logger.CustomLog;
 
 import java.io.File;
 import java.util.Date;
@@ -14,6 +15,8 @@ import java.util.Random;
 
 
 public class BaseApplication extends MultiDexApplication {
+
+    private static final String TAG = BaseApplication.class.getSimpleName();
 
     public static boolean isAppWentToBg = true;
     public static boolean isShowExceptionToast = true;
@@ -50,7 +53,7 @@ public class BaseApplication extends MultiDexApplication {
         try {
             notificationId = (int) ((new Date().getTime() / 1000L) % Integer.MAX_VALUE);
         } catch (Exception e) {
-            e.printStackTrace();
+            CustomLog.errorException(TAG, e);
             Random random = new Random();
             notificationId = random.nextInt(9999 - 1000) + 10;
         }

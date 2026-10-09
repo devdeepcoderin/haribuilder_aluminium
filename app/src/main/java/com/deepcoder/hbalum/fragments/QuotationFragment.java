@@ -34,6 +34,7 @@ import com.deepcoder.hbalum.utils.GeneratePDFCommonMethods;
 import com.deepcoder.hbalum.utils.PermissionUtils;
 import com.deepcoder.hbalum.utils.StaticData;
 import com.deepcoder.hbalum.utils.StaticUtils;
+import com.deepcoder.hbalum.utils.logger.CustomLog;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -60,6 +61,8 @@ import java.util.Locale;
 import java.util.Map;
 
 public class QuotationFragment extends BaseFragment {
+
+    private static final String TAG = QuotationFragment.class.getSimpleName();
     private FragmentQuotationBinding binding;
 
     public void onViewClicked() {
@@ -629,7 +632,7 @@ public class QuotationFragment extends BaseFragment {
                             createQuotationPDF();
                             hideLoading();
                         } catch (FileNotFoundException | DocumentException e) {
-                            e.printStackTrace();
+                            CustomLog.errorException(TAG, e);
                         }
                         binding.clUserDetails.getRoot().setVisibility(View.GONE);
                     }
@@ -659,7 +662,7 @@ public class QuotationFragment extends BaseFragment {
                         createQuotationPDF();
                         hideLoading();
                     } catch (FileNotFoundException | DocumentException e) {
-                        e.printStackTrace();
+                        CustomLog.errorException(TAG, e);
                     }
                     binding.clUserDetails.getRoot().setVisibility(View.GONE);
                 }
@@ -933,7 +936,7 @@ public class QuotationFragment extends BaseFragment {
         } catch (DocumentException de) {
             Log.e("PDFCreator", "DocumentException:" + de);
         } catch (IOException e) {
-            e.printStackTrace();
+            CustomLog.errorException(TAG, e);
         } finally {
             document.close();
 

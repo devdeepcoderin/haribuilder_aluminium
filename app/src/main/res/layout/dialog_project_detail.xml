@@ -2,19 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
+    android:background="@drawable/bg_glass_bottom_sheet"
     android:focusableInTouchMode="true"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/smallPadding">
 
     <include
         android:id="@+id/inheader"
         layout="@layout/layout_dialog_title" />
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingTop="@dimen/miniPadding">
 
         <LinearLayout style="@style/llProjectDetailStyle">
 
@@ -56,8 +57,7 @@
                 style="@style/tvSubTitleStyle" />
         </LinearLayout>
 
-        <include
-            layout="@layout/layout_divider_horizontal" />
+        <include layout="@layout/layout_divider_horizontal" />
 
         <LinearLayout style="@style/llProjectDetailStyle">
 
@@ -71,7 +71,8 @@
                 style="@style/tvSubTitleStyle" />
         </LinearLayout>
 
-        <include android:id="@+id/inHorizontal"
+        <include
+            android:id="@+id/inHorizontal"
             layout="@layout/layout_divider_horizontal" />
 
         <LinearLayout style="@style/llProjectDetailStyle">
@@ -86,7 +87,8 @@
                 style="@style/tvSubTitleStyle" />
         </LinearLayout>
 
-        <include android:id="@+id/inBottomButtons"
+        <include
+            android:id="@+id/inBottomButtons"
             layout="@layout/layout_bottom_buttons" />
     </LinearLayout>
 </LinearLayout>

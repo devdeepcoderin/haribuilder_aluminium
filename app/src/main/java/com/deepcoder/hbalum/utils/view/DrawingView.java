@@ -1,10 +1,10 @@
 package com.deepcoder.hbalum.utils.view;
 
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.RectF;
+import android.graphics.drawable.ColorDrawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 
 import com.deepcoder.hbalum.R;
 import com.deepcoder.hbalum.activities.DesignActivity;
@@ -19,6 +20,7 @@ import com.deepcoder.hbalum.databinding.DialogChangeSizeBinding;
 import com.deepcoder.hbalum.old.p006a.p008b.C0140d;
 import com.deepcoder.hbalum.old.p006a.p008b.DrawingPoints;
 import com.deepcoder.hbalum.utils.StaticUtils;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.Locale;
 
@@ -60,10 +62,13 @@ public class DrawingView extends View {
                 c0140d = c0140dLocal;
 
                 DialogChangeSizeBinding binding = DialogChangeSizeBinding.inflate(LayoutInflater.from(getContext()));
-                Builder builder = new Builder(getContext(), 3);
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(getContext(), R.style.ThemeOverlay_App_MaterialAlertDialog);
                 builder.setView(binding.getRoot());
 
                 AlertDialog alertDialog = builder.create();
+                if (alertDialog.getWindow() != null) {
+                    alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                }
 
                 binding.inheader.tvDialogTitle.setText(getContext().getString(R.string.set_view_size));
                 binding.edtSize.setText(String.format(Locale.ENGLISH, "%.0f", c0140d.f752c));
